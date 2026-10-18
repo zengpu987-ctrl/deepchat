@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "DeepChat",
+    "description": "DeepChat: a ChatGPT-shaped conversation page beside the agent. The left rail holds searchable, day-grouped chat history; the thread is centered and the composer starts in the middle of an empty chat. PDF / Mathematica notebook / image / text attachments, plus a DeepSeek model and thinking-effort picker. No tools, just chat."
+  }
+}

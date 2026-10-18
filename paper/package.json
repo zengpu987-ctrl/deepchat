@@ -1,0 +1,11 @@
+{
+  "name": "deepchat-paper",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pdf": "node render_pdf.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.50.0"
+  }
+}

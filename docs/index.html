@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeepChat — a local-first, model-synchronising macOS client</title>
+<meta name="description" content="DeepChat: a Codex-style, local-first chat client for DeepSeek Harness with live model sync, signed-cookie port discovery and a drag-based reasoning-effort control.">
+<style>
+  :root{--ink:#111216;--muted:#5c5f66;--line:#e4e4e8;--soft:#f7f7f9;--blue:#2563eb;--purple:#6d28d9;--red:#b31b1b;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.55}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);z-index:5}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:58px;gap:18px}
+  .brand{font-weight:750;letter-spacing:-.02em;font-size:17px;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--blue),var(--purple))}
+  .navlinks{display:flex;gap:18px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+  .navlinks a{text-decoration:none}.navlinks a:hover{color:var(--ink)}
+  .hero{padding:64px 0 28px}
+  .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:700}
+  h1{font-family:Georgia,"Times New Roman","Songti SC",serif;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin:12px 0 10px;max-width:900px}
+  .sub{font-family:Georgia,"Times New Roman","Songti SC",serif;font-size:21px;line-height:1.38;color:#3c3f45;max-width:850px;margin:0 0 18px}
+  .authors{font-size:13px;color:var(--muted);margin-bottom:22px}
+  .buttons{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 8px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-size:13.5px;font-weight:600;background:#fff;transition:.15s}
+  .btn:hover{border-color:#b9bcc4;transform:translateY(-1px)}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn.purple{background:#f5f3ff;border-color:#ddd6fe;color:#5b21b6}
+  .meta{font-size:12px;color:var(--muted);margin-top:14px}
+  figure{margin:28px 0}
+  img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px}
+  figcaption{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.45}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 34px}
+  .stat{border:1px solid var(--line);border-radius:10px;padding:14px 15px;background:var(--soft)}
+  .stat b{display:block;font-size:23px;letter-spacing:-.02em;line-height:1.1}
+  .stat span{display:block;font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.35}
+  h2{font-family:Georgia,"Times New Roman","Songti SC",serif;font-size:29px;letter-spacing:-.02em;margin:46px 0 12px;line-height:1.2}
+  h3{font-size:16px;margin:22px 0 6px}
+  p{margin:0 0 12px;color:#2b2d33}
+  .lede{font-size:16px;color:#33363c;max-width:900px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  ul{margin:6px 0 12px;padding-left:20px}li{margin:4px 0;color:#2b2d33}
+  code{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.9em;background:#f3f3f6;border:1px solid #e7e7eb;padding:1px 5px;border-radius:4px}
+  pre{background:#0f1115;color:#e8e9ee;padding:15px 16px;border-radius:9px;overflow:auto;font-size:12.2px;line-height:1.5}
+  .paper{border:1px solid var(--line);border-radius:12px;padding:20px;background:linear-gradient(180deg,#fff,#fbfbfd)}
+  .paper .tag{display:inline-block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:6px}
+  .paper h2{margin:2px 0 8px;font-size:26px}
+  .paper .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .note{font-size:12px;color:var(--muted)}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding:24px 0 46px;font-size:12px;color:var(--muted)}
+  .zh{font-family:"Songti SC","STSong",serif}
+  @media(max-width:800px){h1{font-size:36px}.sub{font-size:18px}.grid{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}.hero{padding-top:40px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="dot"></span>DeepChat <span style="font-weight:500;color:#9a9da5;font-size:12px">1.2.0</span></div>
+    <div class="navlinks">
+      <a href="#paper">Paper</a><a href="#sync">Sync</a><a href="#start">Install</a>
+      <a href="https://github.com/zengpu987-ctrl/deepchat">GitHub</a>
+      <a href="https://github.com/zengpu987-ctrl/deepchat/releases/latest">Release</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="kicker">Preprint · 18 pages · English / 中文</div>
+    <h1>DeepChat: a local-first, model-synchronising macOS client for reasoning-effort-controlled conversational AI</h1>
+    <div class="sub">A thin native shell, a live model catalogue, and a signed-cookie bridge for a host-coupled chat surface.</div>
+    <div class="authors">Pu Zeng · Independent researcher · 19 October 2026</div>
+    <div class="buttons">
+      <a class="btn primary" href="assets/paper.pdf">Read the 18-page paper (PDF)</a>
+      <a class="btn" href="https://github.com/zengpu987-ctrl/deepchat">Source on GitHub</a>
+      <a class="btn" href="https://github.com/zengpu987-ctrl/deepchat/releases/latest">Download DeepChat 1.2.0</a>
+    </div>
+    <div class="meta">Code MIT · Paper CC BY 4.0 · Not peer reviewed · 58 references</div>
+  </section>
+
+  <figure>
+    <img src="assets/deepchat.png" alt="DeepChat landing page">
+    <figcaption>The DeepChat surface: a 300 px conversation rail, a cloud hero, and a 980 px composer. The host's navigation column is collapsed by the native shell, so the panel reads as an application.</figcaption>
+  </figure>
+
+  <div class="grid">
+    <div class="stat"><b>1.0 MB</b><span>native Swift/WKWebView shell<br>(828 KB release zip)</span></div>
+    <div class="stat"><b>141 + 59</b><span>pipeline and formatting<br>automated checks</span></div>
+    <div class="stat"><b>20 s</b><span>host revision sync<br>idle-only reloads</span></div>
+    <div class="stat"><b>1.4 ms</b><span>effort popover<br>click → visible (mean)</span></div>
+  </div>
+
+  <h2 id="paper">The paper</h2>
+  <div class="paper">
+    <div class="tag">Nature-style · bilingual</div>
+    <h2 style="margin-top:2px">DeepChat</h2>
+    <p class="lede">Desktop clients for large language models usually couple three things that should be independent: a vendor cloud, a frozen model menu, and a coarse reasoning budget. DeepChat keeps the conversation local, treats the model menu as a live view of the host catalogue, and discovers the host's ephemeral loopback port from the authority inside its signed session cookie. The browser half never sees a provider key; the native shell never sees model output.</p>
+    <p class="zh" style="color:#3a3d44">大语言模型的桌面客户端通常把三件本应独立的事情绑在一起：厂商云、冻结的模型菜单和粗粒度的推理预算。DeepChat 把对话留在本地，把模型目录当成 Host 的实时视图，并从签名会话 Cookie 里的 authority 自动发现 Host 的临时回环端口；浏览器半看不到提供商 Key，外壳看不到模型输出。</p>
+    <div class="links">
+      <a class="btn purple" href="assets/paper.pdf">PDF · 18 pages</a>
+      <a class="btn" href="https://github.com/zengpu987-ctrl/deepchat/tree/main/paper">Paper source</a>
+    </div>
+    <p class="note" style="margin-top:12px">English pp. 1–10 · 中文 pp. 11–14 · Extended Data pp. 15–16 · references/back matter pp. 17–18. 7 figures, 11 tables, 58 verified references.</p>
+  </div>
+
+  <h2 id="sync">Model and host synchronisation</h2>
+  <div class="cols">
+    <div>
+      <h3>The catalogue is a view</h3>
+      <p>The model menu is rendered from the host's authenticated RPC, not from a constant. A focus event, a 90 s timer or the top-bar button refreshes it; a refresh is skipped while an answer is streaming. In a real update the panel moved from <code>DeepSeek-V41-Flash</code> to <code>DeepSeek-V4.1-Flash</code>, with <code>DeepSeek-V4-Pro</code> in both provider groups, without a client release.</p>
+      <h3>The port is an interface</h3>
+      <p>A host that chooses an ephemeral loopback port is avoiding collisions, not being awkward. DeepChat decodes the <code>authority</code> from each signed <code>dsh-auth-…</code> cookie, probes candidates newest-first, and adopts the one that answers 200. The real migration <code>127.0.0.1:19387 → 127.0.0.1:53254</code> is the acceptance test.</p>
+      <h3>A reload only when it is safe</h3>
+      <p>A 20 s watcher compares the served HTML revision. A streaming answer, a draft or a pending attachment defers the reload; the next tick retries.</p>
+    </div>
+    <div>
+      <h3>Reasoning effort is discrete</h3>
+      <p>The drag is a presentation layer over the levels the model declares. For the current DeepSeek models that is four stops: Off, Low, High, Max. The value sent to the provider is always one of those levels.</p>
+      <figure style="margin:8px 0 16px">
+        <img src="assets/effort.png" alt="Effort popover">
+        <figcaption>The purple fill follows the thumb; the unfilled track is white. The flow and stars are a CSS animation.</figcaption>
+      </figure>
+      <h3>Every visible control answers</h3>
+      <p>The effort model line opens the model menu; the lightning boosts to maximum and back; the memory pill toggles with a filled/hollow dot; the avatar opens the account card; the workspace chip opens the host workspace list.</p>
+    </div>
+  </div>
+
+  <figure>
+    <img src="assets/architecture.png" alt="DeepChat architecture">
+    <figcaption>Three layers: the Harness Host owns credentials and routing; the browser half owns the conversation; the native shell owns the WKWebView, the 302 cookie bootstrap and the sync watcher. All traffic stays on loopback.</figcaption>
+  </figure>
+
+  <h2 id="start">Quick start</h2>
+  <div class="cols">
+    <div>
+      <h3>1 · Install the Harness bundle</h3>
+      <p>In a DSH session with the plugin manager available:</p>
+      <pre>plugin_manager({ action: 'install_bundle',
+  target: '/absolute/path/to/deepchat/chat-mode' })</pre>
+      <p class="note">Manual fallback: <code>cd ~/.dsh/profiles/desktop && pnpm add link:/absolute/path/to/deepchat/chat-mode</code>, then restart Harness.</p>
+    </div>
+    <div>
+      <h3>2 · Install the macOS app</h3>
+      <p>Download <code>DeepChat-1.2.0.zip</code> from the latest release, unzip into <code>/Applications</code>, and open it. Or build:</p>
+      <pre>cd deepchat-app
+./build.sh --install
+open /Applications/DeepChat.app</pre>
+      <p class="note">Requires macOS 13+, Xcode Command Line Tools for building, and a logged-in DeepSeek Harness. The app is not sandboxed because it reads the local Harness cookie database.</p>
+    </div>
+  </div>
+
+  <h2>Verification</h2>
+  <p>Both offline suites pass on the released build: 141 pipeline checks and 59 formatting/decoding checks. The live audit adds 80 trials across eight interactions; auth is 200 with the current authority cookie and 401 without it. The paper's methods, raw samples and reproducibility table are in the PDF and in <code>paper/data/</code>.</p>
+  <pre>node tools/chat-mode-check.mjs
+node tools/chat-mode-format-check.mjs</pre>
+
+  <h2>Cite</h2>
+  <pre>@software{deepchat2026,
+  author  = {Zeng, Pu},
+  title   = {DeepChat: a local-first, model-synchronising macOS client for
+             reasoning-effort-controlled conversational AI},
+  year    = {2026},
+  version = {1.2.0},
+  url     = {https://github.com/zengpu987-ctrl/deepchat},
+  note    = {Preprint: paper/DeepChat-Nature-Bilingual-18p.pdf}
+}</pre>
+
+  <footer>
+    DeepChat is independent and not endorsed by DeepSeek. DeepSeek and the whale mark belong to DeepSeek.
+    Code MIT · paper and figures CC BY 4.0 · <a href="https://github.com/zengpu987-ctrl/deepchat">github.com/zengpu987-ctrl/deepchat</a>
+  </footer>
+</main>
+</body>
+</html>

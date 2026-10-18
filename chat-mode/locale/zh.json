@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "DeepChat",
+    "description": "DeepChat：Agent 模式旁边的 ChatGPT 式对话页。左侧是对话历史（可搜索、分组、删除），中间是居中的消息流，空对话时输入框落在页面中央；可上传 PDF、Mathematica 笔记本、图片与文本文件，可选择 DeepSeek 模型与思考强度，不调用工具，直接对话。"
+  }
+}

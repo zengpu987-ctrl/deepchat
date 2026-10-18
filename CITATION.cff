@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use DeepChat, please cite the software and the accompanying preprint."
+title: "DeepChat: a local-first, model-synchronising macOS client for reasoning-effort-controlled conversational AI"
+type: software
+authors:
+  - family-names: Zeng
+    given-names: Pu
+version: 1.2.0
+date-released: 2026-10-19
+url: "https://github.com/zengpu987-ctrl/deepchat"
+license: MIT
+keywords:
+  - DeepSeek Harness
+  - LLM chat client
+  - local-first
+  - reasoning effort
+  - model routing
+  - macOS
+  - WKWebView
+preferred-citation:
+  type: article
+  title: "DeepChat: a local-first, model-synchronising macOS client for reasoning-effort-controlled conversational AI"
+  authors:
+    - family-names: Zeng
+      given-names: Pu
+  year: 2026
+  url: "https://github.com/zengpu987-ctrl/deepchat/blob/main/paper/DeepChat-Nature-Bilingual-18p.pdf"
+  note: "Preprint; 18 pages; CC BY 4.0."

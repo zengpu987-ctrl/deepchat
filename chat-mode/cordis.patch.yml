@@ -1,0 +1,9 @@
+# Profile layer of the chat-mode bundle: one Host row that streams plain model
+# calls for the Chat panel, and whose browser half registers the two sidebar
+# mode entries and the panel itself.
+- insert:
+    - id: chat-mode
+      name: '@local/dsh-chat-mode'
+      config:
+        # The panel's own system prompt; empty keeps the built-in default.
+        systemPrompt: ''

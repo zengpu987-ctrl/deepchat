@@ -1,0 +1,414 @@
+{
+  "generatedAt": "2026-10-18T20:13:45.808Z",
+  "url": "http://127.0.0.1:53254/",
+  "viewport": {
+    "width": 1280,
+    "height": 860
+  },
+  "deviceScaleFactor": 1,
+  "boot": [
+    1210,
+    1188,
+    1761,
+    1203,
+    1230
+  ],
+  "bootDetail": [
+    {
+      "round": 1,
+      "toPanelMs": 708,
+      "bootMs": 1210
+    },
+    {
+      "round": 2,
+      "toPanelMs": 686,
+      "bootMs": 1188
+    },
+    {
+      "round": 3,
+      "toPanelMs": 1259,
+      "bootMs": 1761
+    },
+    {
+      "round": 4,
+      "toPanelMs": 701,
+      "bootMs": 1203
+    },
+    {
+      "round": 5,
+      "toPanelMs": 728,
+      "bootMs": 1230
+    }
+  ],
+  "catalog": {
+    "groups": [
+      {
+        "group": "DeepSeek",
+        "items": [
+          {
+            "label": "DeepSeek-V4.1-Flash",
+            "description": "",
+            "checked": true
+          },
+          {
+            "label": "DeepSeek-V4-Pro",
+            "description": "Stronger agentic coding, knowledge, and difficult reasoning; suited to complex or quality-critical tasks at higher cost.",
+            "checked": false
+          }
+        ]
+      },
+      {
+        "group": "DeepSeek Account",
+        "items": [
+          {
+            "label": "DeepSeek-V4.1-Flash",
+            "description": "",
+            "checked": false
+          },
+          {
+            "label": "DeepSeek-V4-Pro",
+            "description": "Stronger agentic coding, knowledge, and difficult reasoning; suited to complex or quality-critical tasks at higher cost.",
+            "checked": false
+          }
+        ]
+      }
+    ],
+    "currentLabel": "DeepSeek-V4.1-Flash",
+    "menuText": "DeepSeek\n✓\nDeepSeek-V4.1-Flash\nDeepSeek-V4-Pro\nStronger agentic coding, knowledge, and difficult reasoning; suited to complex or quality-critical tasks at higher cost.\nDeepSeek Account\nDeepSeek-V4.1-Flash\nDeepSeek-V4-Pro\nStronger agentic coding, knowledge, and difficult reasoning; suited to complex or quality-critical tasks at higher cost."
+  },
+  "efforts": {
+    "current": "High",
+    "boltPressed": "false",
+    "min": 0,
+    "max": 3,
+    "value": 2,
+    "disabled": false,
+    "modelName": "DeepSeek-V4.1-Flash",
+    "ladder": [
+      {
+        "index": 0,
+        "label": "Off"
+      },
+      {
+        "index": 1,
+        "label": "Low"
+      },
+      {
+        "index": 2,
+        "label": "High"
+      },
+      {
+        "index": 3,
+        "label": "Max"
+      }
+    ]
+  },
+  "results": {
+    "new_chat_hero": {
+      "samples": [
+        1.2999999523162842,
+        1.699999988079071,
+        1.5999999642372131,
+        2.699999988079071,
+        1.4000000357627869,
+        1.4000000357627869,
+        1.7000000476837158,
+        2.300000011920929,
+        1.7000000476837158,
+        2.200000047683716
+      ],
+      "transitions": [],
+      "errors": []
+    },
+    "effort_open": {
+      "samples": [
+        1.100000023841858,
+        1.5,
+        1.2999999523162842,
+        1.399999976158142,
+        1.300000011920929,
+        1.300000011920929,
+        1.399999976158142,
+        1.5999999642372131,
+        1.300000011920929,
+        1.600000023841858
+      ],
+      "transitions": [],
+      "errors": []
+    },
+    "effort_bolt": {
+      "samples": [
+        2.900000035762787,
+        15.800000011920929,
+        10.699999988079071,
+        10.100000023841858,
+        14.899999976158142,
+        14.800000011920929,
+        15.800000011920929,
+        14.900000035762787,
+        1.5,
+        9
+      ],
+      "transitions": [
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        }
+      ],
+      "errors": []
+    },
+    "effort_model_menu": {
+      "samples": [
+        8.199999988079071,
+        6.800000011920929,
+        7.800000011920929,
+        1.300000011920929,
+        7.300000011920929,
+        3.600000023841858,
+        5.400000035762787,
+        6.099999964237213,
+        1.600000023841858,
+        4.699999988079071
+      ],
+      "transitions": [],
+      "errors": []
+    },
+    "pill_pressed": {
+      "samples": [
+        0.699999988079071,
+        0.8999999761581421,
+        0.6000000238418579,
+        0.5,
+        0.6000000238418579,
+        0.6000000238418579,
+        0.5,
+        0.6000000238418579,
+        0.5999999642372131,
+        0.699999988079071
+      ],
+      "transitions": [
+        {
+          "before": "true",
+          "after": "false"
+        },
+        {
+          "before": "false",
+          "after": "true"
+        },
+        {
+          "before": "true",
+          "after": "false"
+        },
+        {
+          "before": "false",
+          "after": "true"
+        },
+        {
+          "before": "true",
+          "after": "false"
+        },
+        {
+          "before": "false",
+          "after": "true"
+        },
+        {
+          "before": "true",
+          "after": "false"
+        },
+        {
+          "before": "false",
+          "after": "true"
+        },
+        {
+          "before": "true",
+          "after": "false"
+        },
+        {
+          "before": "false",
+          "after": "true"
+        }
+      ],
+      "errors": []
+    },
+    "workspace_card": {
+      "samples": [
+        1.399999976158142,
+        0.699999988079071,
+        1.100000023841858,
+        0.9000000357627869,
+        1.100000023841858,
+        1.0999999642372131,
+        0.8999999761581421,
+        0.800000011920929,
+        0.8999999761581421,
+        0.8999999761581421
+      ],
+      "transitions": [],
+      "errors": []
+    },
+    "account_card": {
+      "samples": [
+        1.699999988079071,
+        1.0999999642372131,
+        0.800000011920929,
+        0.9000000357627869,
+        0.8999999761581421,
+        0.800000011920929,
+        1.100000023841858,
+        1.2000000476837158,
+        1.100000023841858,
+        1
+      ],
+      "transitions": [],
+      "errors": []
+    },
+    "slider_drag_max": {
+      "samples": [
+        109,
+        115.70000004768372,
+        117.19999998807907,
+        117.79999995231628,
+        118.30000001192093,
+        117,
+        134.0999999642372,
+        116.5,
+        118.30000001192093,
+        117.09999996423721
+      ],
+      "transitions": [
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        },
+        {
+          "before": "High",
+          "after": "Max"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "screenshots": {
+    "landing": "figures/ui-landing.png",
+    "effort": "figures/ui-effort.png",
+    "model": "figures/ui-model.png"
+  },
+  "errors": [
+    {
+      "message": "CONSOLE [boot-1] Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:40085)\n    at Qk (http://127.0",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-1] slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/inde",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-2] Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:40085)\n    at Qk (http://127.0",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-2] slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/inde",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-3] Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:40085)\n    at Qk (http://127.0",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-3] slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/inde",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-4] Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:40085)\n    at Qk (http://127.0",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-4] slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/inde",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-5] Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:40085)\n    at Qk (http://127.0",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [boot-5] slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/inde",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [interaction] Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:40085)\n    at Qk (http://127.0",
+      "count": 1
+    },
+    {
+      "message": "CONSOLE [interaction] slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Wl (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:49804)\n    at ot (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:54:11105)\n    at jt (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:1479)\n    at ch (http://127.0.0.1:53254/assets/index-CN7NIWNw.js:56:46166)\n    at oh (http://127.0.0.1:53254/assets/inde",
+      "count": 1
+    }
+  ]
+}

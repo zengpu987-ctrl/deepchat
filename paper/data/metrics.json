@@ -1,0 +1,400 @@
+{
+  "generatedAt": "2026-10-19T04:16:31.415+08:00",
+  "port": "127.0.0.1:53254",
+  "environment": {
+    "url": "http://127.0.0.1:53254/",
+    "viewport": {
+      "width": 1280,
+      "height": 860
+    },
+    "deviceScaleFactor": 1,
+    "browser": "Google Chrome for Testing 152.0.7977.64 (headless)"
+  },
+  "latency_ms": {
+    "new_chat_hero": {
+      "n": 10,
+      "mean": 1.8,
+      "sd": 0.455,
+      "p95": 2.52,
+      "min": 1.3,
+      "max": 2.7,
+      "samples": [
+        1.3,
+        1.7,
+        1.6,
+        2.7,
+        1.4,
+        1.4,
+        1.7,
+        2.3,
+        1.7,
+        2.2
+      ],
+      "errors": []
+    },
+    "effort_open": {
+      "n": 10,
+      "mean": 1.38,
+      "sd": 0.155,
+      "p95": 1.6,
+      "min": 1.1,
+      "max": 1.6,
+      "samples": [
+        1.1,
+        1.5,
+        1.3,
+        1.4,
+        1.3,
+        1.3,
+        1.4,
+        1.6,
+        1.3,
+        1.6
+      ],
+      "errors": []
+    },
+    "effort_bolt": {
+      "n": 10,
+      "mean": 11.04,
+      "sd": 5.288,
+      "p95": 15.8,
+      "min": 1.5,
+      "max": 15.8,
+      "samples": [
+        2.9,
+        15.8,
+        10.7,
+        10.1,
+        14.9,
+        14.8,
+        15.8,
+        14.9,
+        1.5,
+        9
+      ],
+      "errors": []
+    },
+    "effort_model_menu": {
+      "n": 10,
+      "mean": 5.28,
+      "sd": 2.461,
+      "p95": 8.02,
+      "min": 1.3,
+      "max": 8.2,
+      "samples": [
+        8.2,
+        6.8,
+        7.8,
+        1.3,
+        7.3,
+        3.6,
+        5.4,
+        6.1,
+        1.6,
+        4.7
+      ],
+      "errors": []
+    },
+    "pill_pressed": {
+      "n": 10,
+      "mean": 0.63,
+      "sd": 0.116,
+      "p95": 0.81,
+      "min": 0.5,
+      "max": 0.9,
+      "samples": [
+        0.7,
+        0.9,
+        0.6,
+        0.5,
+        0.6,
+        0.6,
+        0.5,
+        0.6,
+        0.6,
+        0.7
+      ],
+      "errors": [],
+      "transitions": {
+        "true->false": 5,
+        "false->true": 5
+      }
+    },
+    "workspace_card": {
+      "n": 10,
+      "mean": 0.98,
+      "sd": 0.199,
+      "p95": 1.265,
+      "min": 0.7,
+      "max": 1.4,
+      "samples": [
+        1.4,
+        0.7,
+        1.1,
+        0.9,
+        1.1,
+        1.1,
+        0.9,
+        0.8,
+        0.9,
+        0.9
+      ],
+      "errors": []
+    },
+    "account_card": {
+      "n": 10,
+      "mean": 1.06,
+      "sd": 0.263,
+      "p95": 1.475,
+      "min": 0.8,
+      "max": 1.7,
+      "samples": [
+        1.7,
+        1.1,
+        0.8,
+        0.9,
+        0.9,
+        0.8,
+        1.1,
+        1.2,
+        1.1,
+        1
+      ],
+      "errors": []
+    },
+    "slider_drag_max": {
+      "n": 10,
+      "mean": 118.1,
+      "sd": 6.239,
+      "p95": 126.99,
+      "min": 109,
+      "max": 134.1,
+      "samples": [
+        109,
+        115.7,
+        117.2,
+        117.8,
+        118.3,
+        117,
+        134.1,
+        116.5,
+        118.3,
+        117.1
+      ],
+      "errors": []
+    }
+  },
+  "latency_method": {
+    "clock": "page-side performance.now()",
+    "polling": "requestAnimationFrame until the target selector/attribute/text is present",
+    "repetitions": 10,
+    "p95": "linear interpolation between order statistics (numpy default)",
+    "note": "React flushes discrete click updates synchronously, so the first animation frame usually already sees the new DOM; numbers measure click -> DOM-visible, not compositor paint."
+  },
+  "boot_ms": [
+    1210,
+    1188,
+    1761,
+    1203,
+    1230
+  ],
+  "boot_detail": [
+    {
+      "round": 1,
+      "toPanelMs": 708,
+      "bootMs": 1210
+    },
+    {
+      "round": 2,
+      "toPanelMs": 686,
+      "bootMs": 1188
+    },
+    {
+      "round": 3,
+      "toPanelMs": 1259,
+      "bootMs": 1761
+    },
+    {
+      "round": 4,
+      "toPanelMs": 701,
+      "bootMs": 1203
+    },
+    {
+      "round": 5,
+      "toPanelMs": 728,
+      "bootMs": 1230
+    }
+  ],
+  "boot_summary": {
+    "n": 5,
+    "mean": 1318.4,
+    "sd": 247.882,
+    "p95": 1654.8,
+    "min": 1188,
+    "max": 1761,
+    "median": 1210,
+    "toPanelMedian": 708
+  },
+  "model_catalog": [
+    {
+      "group": "DeepSeek",
+      "items": [
+        {
+          "label": "DeepSeek-V4.1-Flash",
+          "description": "",
+          "checked": true
+        },
+        {
+          "label": "DeepSeek-V4-Pro",
+          "description": "Stronger agentic coding, knowledge, and difficult reasoning; suited to complex or quality-critical tasks at higher cost.",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "group": "DeepSeek Account",
+      "items": [
+        {
+          "label": "DeepSeek-V4.1-Flash",
+          "description": "",
+          "checked": false
+        },
+        {
+          "label": "DeepSeek-V4-Pro",
+          "description": "Stronger agentic coding, knowledge, and difficult reasoning; suited to complex or quality-critical tasks at higher cost.",
+          "checked": false
+        }
+      ]
+    }
+  ],
+  "model_catalog_current": "DeepSeek-V4.1-Flash",
+  "efforts": {
+    "current": "High",
+    "current_index": 2,
+    "min": 0,
+    "max": 3,
+    "levels": [
+      "Off",
+      "Low",
+      "High",
+      "Max"
+    ],
+    "bolt_target": "Max",
+    "slider_model": "DeepSeek-V4.1-Flash"
+  },
+  "auth": {
+    "with_cookie": 200,
+    "without_cookie": 401
+  },
+  "tests": {
+    "pipeline": {
+      "exit": 0,
+      "ok": 141
+    },
+    "format": {
+      "exit": 0,
+      "ok": 59
+    },
+    "command": "node tools/chat-mode-check.mjs; node tools/chat-mode-format-check.mjs"
+  },
+  "files": {
+    "chat-mode/client.js": {
+      "lines": 5539,
+      "bytes": 241102
+    },
+    "chat-mode/index.js": {
+      "lines": 255,
+      "bytes": 10087
+    },
+    "deepchat-app/src/main.swift": {
+      "lines": 954,
+      "bytes": 42346
+    },
+    "total_lines": 6748,
+    "app_bundle": {
+      "path": "/Applications/DeepChat.app",
+      "du": "1.0M",
+      "kib": 1036
+    },
+    "deepchat_zip": {
+      "path": "deepchat-app/dist/DeepChat-1.2.0.zip",
+      "du": "828K",
+      "bytes": 846594
+    },
+    "dictionaries": {
+      "locale_dictionaries": 2,
+      "locales": [
+        "zh",
+        "en"
+      ],
+      "strings_per_dictionary": 99,
+      "key_sets_match": true,
+      "meta_files": 2
+    }
+  },
+  "sync_detection_s": [
+    11.79,
+    11.35
+  ],
+  "sync_detection": {
+    "timer_s": 20,
+    "trials": 2,
+    "signal": "Harness page revision changed; reloading",
+    "log": "~/Library/Logs/DeepChat.log",
+    "log_lines": [
+      {
+        "before": 7,
+        "after": 8,
+        "elapsed_s": 11.79,
+        "matched": "Harness page revision changed; reloading"
+      },
+      {
+        "before": 12,
+        "after": 13,
+        "elapsed_s": 11.35,
+        "matched": "Harness page revision changed; reloading"
+      }
+    ],
+    "evidence": [
+      "[DeepChat] Harness page revision changed; reloading"
+    ]
+  },
+  "errors": [
+    {
+      "message": "Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+      "count": 6,
+      "contexts": [
+        "boot-1",
+        "boot-2",
+        "boot-3",
+        "boot-4",
+        "boot-5",
+        "interaction"
+      ]
+    },
+    {
+      "message": "slot entry crashed in 'sidebar.footer.action': Error: Minified React error #130; visit https://reactjs.org/docs/error-decoder.html?invariant=130&args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+      "count": 6,
+      "contexts": [
+        "boot-1",
+        "boot-2",
+        "boot-3",
+        "boot-4",
+        "boot-5",
+        "interaction"
+      ]
+    }
+  ],
+  "errors_summary": {
+    "console_errors": 12,
+    "page_errors": 0,
+    "request_failures": 0,
+    "unique_messages": 2
+  },
+  "error_notes": "Both messages come from the DSH shell sidebar.footer.action slot (React error #130) and appeared once per fresh page, including every boot context; they did not prevent the DeepChat panel from rendering. No pageerror or requestfailed events occurred.",
+  "screenshots": {
+    "landing": "figures/ui-landing.png",
+    "effort": "figures/ui-effort.png",
+    "model": "figures/ui-model.png"
+  }
+}
