@@ -76,7 +76,7 @@ on the next page load; the Host half needs a Harness restart.
 
 ### 2. Install the macOS app
 
-Download `DeepChat-1.2.0.zip` from the
+Download `DeepChat-1.2.0-macOS.zip` from the
 [latest release](https://github.com/zengpu987-ctrl/deepchat/releases/latest),
 unzip it into `/Applications`, and open it. Or build from source:
 
@@ -220,7 +220,7 @@ macOS 原生外壳。它把模型目录当成 Host 的实时视图：新增、�
 修复全部点击目标，发布 18 页中英双语、Nature 格式论文（7 图、11 表、58 篇参考文献）。
 
 安装：用 `plugin_manager` 安装 `chat-mode` bundle；从 Release 下载
-`DeepChat-1.2.0.zip` 解压到 `/Applications`。详见上文 Quick start。
+`DeepChat-1.2.0-macOS.zip` 解压到 `/Applications`。详见上文 Quick start。
 
 ## Licence
 
