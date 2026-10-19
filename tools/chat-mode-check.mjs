@@ -71,9 +71,13 @@ const hostCtx = {
 };
 const hostModule = await import(join(pkgDir, 'index.js'));
 hostModule.apply(hostCtx, {});
-check(hostRoutes.length === 1, 'host half registers exactly one route');
-const route = hostRoutes[0];
-check(route?.path === '/api/chat-mode/stream' && route.methods[0] === 'POST', 'route is POST /api/chat-mode/stream');
+check(hostRoutes.length === 3, 'host half registers the stream + image routes');
+const streamRoute = hostRoutes.find((item) => item.path === '/api/chat-mode/stream');
+const imageRoute = hostRoutes.find((item) => item.path === '/api/chat-mode/image');
+const imageStatusRoute = hostRoutes.find((item) => item.path === '/api/chat-mode/image/status');
+check(streamRoute?.methods[0] === 'POST', 'route is POST /api/chat-mode/stream');
+check(imageRoute?.methods[0] === 'POST', 'route is POST /api/chat-mode/image');
+check(imageStatusRoute?.methods[0] === 'POST', 'route is POST /api/chat-mode/image/status');
 //#endregion
 
 //#region bundle loading
@@ -319,7 +323,7 @@ globalThis.fetch = async (url, init) => {
 		return Response.json({ ok: true, value: { items: [], notes: [], stats: {}, root: '/tmp/superman' } });
 	}
 	const absolute = target.startsWith('http') ? target : `http://127.0.0.1:19387${target}`;
-	return route.fetch(new Request(absolute, init));
+	return streamRoute.fetch(new Request(absolute, init));
 };
 
 const storage = createMemoryStorage();
@@ -496,7 +500,7 @@ const memoryFetch = async (url, init) => {
 		return Response.json({ ok: true, value: { text: 'Recognised scanned text', pages: 2 } });
 	}
 	const absolute = target.startsWith('http') ? target : `http://127.0.0.1:19387${target}`;
-	return route.fetch(new Request(absolute, init));
+	return streamRoute.fetch(new Request(absolute, init));
 };
 globalThis.fetch = memoryFetch;
 
@@ -814,7 +818,7 @@ failing.props.setDraft('Will this fail?');
 await failing.props.send();
 const failedAnswer = failing.store.getSnapshot().messages.at(-1);
 check(failedAnswer.status === 'error' && failedAnswer.error === 'provider is down', 'a provider failure reaches the panel as an error');
-check((await route.fetch(new Request('http://127.0.0.1:19387/api/chat-mode/stream'))).status === 405, 'the route still refuses a non-POST request');
+check((await streamRoute.fetch(new Request('http://127.0.0.1:19387/api/chat-mode/stream'))).status === 405, 'the route still refuses a non-POST request');
 //#endregion
 
 console.log('');

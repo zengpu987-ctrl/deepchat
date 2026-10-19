@@ -255,6 +255,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     private var retryButton: NSButton!
 
     private var snapshotPath: String?
+    private var openImageOnReady = false
     private var snapshotReport: [String: Any] = [:]
     private var readyMessage: [String: Any]?
     private var pollTimer: Timer?
@@ -280,6 +281,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         if let index = CommandLine.arguments.firstIndex(of: "--snapshot"), index + 1 < CommandLine.arguments.count {
             snapshotPath = CommandLine.arguments[index + 1]
         }
+        if CommandLine.arguments.contains("--image") { openImageOnReady = true }
         if let index = CommandLine.arguments.firstIndex(of: "--target"), index + 1 < CommandLine.arguments.count, let url = URL(string: CommandLine.arguments[index + 1]) {
             targetURL = url
         }
@@ -705,6 +707,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         begin()
     }
 
+    /// Open DeepChat's text-to-image modal from the native menu (⌘⇧I).
+    @objc private func openImageGenerator() {
+        NSApp.activate(ignoringOtherApps: true)
+        window.makeKeyAndOrderFront(nil)
+        webView?.evaluateJavaScript("""
+            (function () {
+                const button = document.querySelector('.cm_imageBtn') || document.querySelector('.cm_imageBtnComposer');
+                if (button) button.click();
+            })();
+            """)
+    }
+
     @objc private func reloadPage() {
         if pageLoaded {
             webView.reload()
@@ -732,6 +746,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         if let kind = payload["kind"] as? String, kind == "deepchat-ready" {
             readyMessage = payload
             log("DeepChat page ready: \(payload)")
+            if openImageOnReady {
+                openImageOnReady = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in self?.openImageGenerator() }
+            }
         } else if let kind = payload["kind"] as? String, kind == "script-error" {
             log("page script error: \(payload["message"] ?? "")")
         }
@@ -913,6 +931,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         syncNow.keyEquivalentModifierMask = [.command, .shift]
         syncNow.target = self
         appMenu.addItem(syncNow)
+        let imageItem = NSMenuItem(title: "生成图片…", action: #selector(openImageGenerator), keyEquivalent: "i")
+        imageItem.keyEquivalentModifierMask = [.command, .shift]
+        imageItem.target = self
+        appMenu.addItem(imageItem)
         appMenu.addItem(.separator())
         appMenu.addItem(withTitle: "隐藏 DeepChat", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
         appMenu.addItem(withTitle: "退出 DeepChat", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")

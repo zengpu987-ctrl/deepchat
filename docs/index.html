@@ -57,9 +57,9 @@
 <body>
 <header>
   <div class="wrap nav">
-    <div class="brand"><span class="dot"></span>DeepChat <span style="font-weight:500;color:#9a9da5;font-size:12px">1.2.0</span></div>
+    <div class="brand"><span class="dot"></span>DeepChat <span style="font-weight:500;color:#9a9da5;font-size:12px">1.3.0</span></div>
     <div class="navlinks">
-      <a href="#paper">Paper</a><a href="#sync">Sync</a><a href="#start">Install</a>
+      <a href="#paper">Paper</a><a href="#sync">Sync</a><a href="#image">Image</a><a href="#start">Install</a>
       <a href="https://github.com/zengpu987-ctrl/deepchat">GitHub</a>
       <a href="https://github.com/zengpu987-ctrl/deepchat/releases/latest">Release</a>
     </div>
@@ -75,7 +75,7 @@
     <div class="buttons">
       <a class="btn primary" href="assets/paper.pdf">Read the 18-page paper (PDF)</a>
       <a class="btn" href="https://github.com/zengpu987-ctrl/deepchat">Source on GitHub</a>
-      <a class="btn" href="https://github.com/zengpu987-ctrl/deepchat/releases/latest">Download DeepChat 1.2.0</a>
+      <a class="btn" href="https://github.com/zengpu987-ctrl/deepchat/releases/latest">Download DeepChat 1.3.0</a>
     </div>
     <div class="meta">Code MIT · Paper CC BY 4.0 · Not peer reviewed · 58 references</div>
   </section>
@@ -131,6 +131,29 @@
     </div>
   </div>
 
+  <h2 id="image">Text to image</h2>
+  <div class="cols">
+    <div>
+      <h3>Six modes, two channels</h3>
+      <p>The picture button in the rail or composer opens a text-to-image modal with
+      <b>Auto, Photo, Illustration, Poster, Fast and HD</b> modes, 1:1 / 3:2 / 2:3
+      aspect ratios and 1/2/4 images. <b>Auto</b> prefers a configured Harness image
+      model and falls back to the keyless free online channel; <b>Harness</b> uses the
+      registered <code>image_generate</code> tool; <b>Free online</b> calls
+      pollinations.ai directly.</p>
+      <p class="note">The Harness channel needs a provider in Settings → Image
+      generation and one Harness restart (the Host routes load with it). The free
+      channel works immediately; prompts go to the free service and images can be
+      downloaded.</p>
+      <p class="note">The macOS app adds a native <b>Generate image…</b> menu item
+      (⌘⇧I) that opens the same modal.</p>
+    </div>
+    <figure style="margin:0">
+      <img src="assets/image-modal.png" alt="DeepChat text-to-image modal">
+      <figcaption>Six generation modes, aspect ratio, count and channel selector, with the generated image and download action on the right.</figcaption>
+    </figure>
+  </div>
+
   <figure>
     <img src="assets/architecture.png" alt="DeepChat architecture">
     <figcaption>Three layers: the Harness Host owns credentials and routing; the browser half owns the conversation; the native shell owns the WKWebView, the 302 cookie bootstrap and the sync watcher. All traffic stays on loopback.</figcaption>
@@ -147,7 +170,7 @@
     </div>
     <div>
       <h3>2 · Install the macOS app</h3>
-      <p>Download <code>DeepChat-1.2.0-macOS.zip</code> from the latest release, unzip into <code>/Applications</code>, and open it. Or build:</p>
+      <p>Download <code>DeepChat-1.3.0-macOS.zip</code> from the latest release, unzip into <code>/Applications</code>, and open it. Or build:</p>
       <pre>cd deepchat-app
 ./build.sh --install
 open /Applications/DeepChat.app</pre>
@@ -166,7 +189,7 @@ node tools/chat-mode-format-check.mjs</pre>
   title   = {DeepChat: a local-first, model-synchronising macOS client for
              reasoning-effort-controlled conversational AI},
   year    = {2026},
-  version = {1.2.0},
+  version = {1.3.0},
   url     = {https://github.com/zengpu987-ctrl/deepchat},
   note    = {Preprint: paper/DeepChat-Nature-Bilingual-18p.pdf}
 }</pre>

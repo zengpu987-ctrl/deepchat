@@ -24,7 +24,7 @@ DeepChat 采用 Codex 的两栏结构：左边是 300px 对话栏（DeepChat + �
 | `client.js` | 浏览器半：两个侧边栏模式入口、DeepChat 页面（对话栏/消息流/输入框）、对话记录、Markdown+LaTeX 排版、PDF/笔记本解析、编码识别、字典、样式 |
 | `locale/{zh,en}.json` | 插件管理页/清单卡片的显示元数据 |
 | `icon.svg` | 插件图标 |
-| `../tools/chat-mode-check.mjs` | 工作区里的离线联调脚本：管线 141 项（不属于安装内容） |
+| `../tools/chat-mode-check.mjs` | 工作区里的离线联调脚本：管线 143 项（不属于安装内容） |
 | `../tools/chat-mode-format-check.mjs` | 离线排版/解码检查：LaTeX→MathML 与编码识别 59 项 |
 | `../tools/chat-mode-load.mjs` | 离线加载 client.js 的公共桩（window/document/React/localStorage） |
 
@@ -73,6 +73,22 @@ DeepChat 采用 Codex 的两栏结构：左边是 300px 对话栏（DeepChat + �
    - 其它类型同样明确跳过并说明原因，不会静默丢弃。
 7. **错误呈现**：没有可用模型、目录读取失败、模型调用失败、PDF 无文字层、
    存储写入失败都会在面板内说明原因。
+
+## 文生图
+
+输入框左侧和对话栏顶部各有一个图片按钮，打开 **文生图** 模态：
+
+- **六种生图模式**：自动 / 写实 / 插画 / 海报 / 快速 / 高清；
+- **画幅** 1:1、3:2、2:3；**数量** 1、2、4；
+- **通道**：
+  - `自动`：优先走 Harness 已配置的生图模型，未配置时回退到免费在线通道；
+  - `Harness`：调用 Harness 媒体插件注册的 `image_generate`（需要先在「设置 → 生图配置」配置 provider）；
+  - `免费在线`：直接调用 pollinations.ai（无需 Key，提示词会发送到该服务；图片可下载）。
+- 结果在右侧画廊里显示，可下载；Harness 通道生成的图片保存到 workspace 的 `generate/image`。
+- 桌面 App 的菜单「生成图片…」（⌘⇧I）可以直接打开同一个模态。
+
+Host 半新增 `/api/chat-mode/image` 与 `/api/chat-mode/image/status` 两条已鉴权路由；
+**Host 半改动需要重启 Harness 才会加载**。在重启之前，页面仍可通过免费在线通道生成图片。
 
 ## 崩溃自愈
 
@@ -152,7 +168,7 @@ Harness 没运行时自动拉起并隐藏它自己的窗口。构建、安装和
 
     node tools/chat-mode-check.mjs
 
-    node tools/chat-mode-check.mjs          # 管线：141 项
+    node tools/chat-mode-check.mjs          # 管线：143 项
     node tools/chat-mode-format-check.mjs   # 排版与解码：59 项
 
 两套都用真实的两半代码 + 假 `ctx.llm` + 内存 `localStorage`：

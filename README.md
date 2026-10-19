@@ -5,7 +5,7 @@
 [![MIT](https://img.shields.io/badge/code-MIT-2563eb.svg)](LICENSE)
 [![Paper: CC BY 4.0](https://img.shields.io/badge/paper-CC%20BY%204.0-7c3aed.svg)](paper/LICENSE-CC-BY-4.0.md)
 [![macOS 13+](https://img.shields.io/badge/macOS-13%2B-111111.svg)](#quick-start)
-[![Version](https://img.shields.io/badge/version-1.2.0-16a34a.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.3.0-16a34a.svg)](CHANGELOG.md)
 [![Paper: 18 pages](https://img.shields.io/badge/paper-18%20pages-b31b1b.svg)](paper/DeepChat-Nature-Bilingual-18p.pdf)
 
 ![DeepChat](docs/assets/deepchat.png)
@@ -22,7 +22,21 @@ sees a provider key; the native shell never sees model output.
 It has 7 figures, 11 tables and 58 verified references; the source, data and
 build scripts are in [`paper/`](paper/).
 
-## What is new in 1.2.0
+## What is new in 1.3.0
+
+- **Text-to-image modal.** A new picture button in the rail and composer opens a
+  six-mode image generator: Auto, Photo, Illustration, Poster, Fast and HD,
+  with 1:1 / 3:2 / 2:3 aspect ratios and 1/2/4 images.
+- **Two channels.** `Auto` prefers the configured Harness image model and falls
+  back to the keyless free online channel; `Harness` uses the registered
+  `image_generate` tool; `Free online` calls pollinations.ai directly.
+- **Desktop integration.** The native menu has **Generate image…** (⌘⇧I),
+  opening the same modal in the app.
+- The plugin's Host half adds authenticated image routes; they load after the
+  next Harness restart. Until then the page's free channel works immediately.
+- Verification is now **143** pipeline checks + 59 formatting checks.
+
+## What was new in 1.2.0
 
 - **Model update, live.** The panel followed the host through a real catalogue
   update from `DeepSeek-V41-Flash` to **`DeepSeek-V4.1-Flash`**, with
@@ -76,7 +90,7 @@ on the next page load; the Host half needs a Harness restart.
 
 ### 2. Install the macOS app
 
-Download `DeepChat-1.2.0-macOS.zip` from the
+Download `DeepChat-1.3.0-macOS.zip` from the
 [latest release](https://github.com/zengpu987-ctrl/deepchat/releases/latest),
 unzip it into `/Applications`, and open it. Or build from source:
 
@@ -100,6 +114,10 @@ to the local Harness Cookie database to sign in without a token; see
 - **Memory** — the pill toggles the memory bundle; the small dot shows the state.
 - **Account** — the avatar opens the account card and a direct route to Harness
   settings.
+- **Image** — the picture button in the rail or composer opens the six-mode
+  text-to-image modal. `Auto` prefers a configured Harness image model and falls
+  back to the keyless free online channel; images can be downloaded, and the
+  Harness channel saves them under `generate/image`.
 - **Files** — PDF, images, Mathematica notebooks, text and web pages are parsed
   locally (up to six per message); unsupported binaries are rejected with a
   reason instead of being pasted as mojibake.
@@ -136,12 +154,12 @@ no pending attachment. A draft stalls the reload until the next tick.
 ## Verification
 
 ```sh
-node tools/chat-mode-check.mjs          # 141 pipeline checks
+node tools/chat-mode-check.mjs          # 143 pipeline checks
 node tools/chat-mode-format-check.mjs   # 59 formatting/decoding checks
 ```
 
 Both suites use the real Host and browser halves against stubs; both pass on
-1.2.0. The live scripted audit adds 80 trials across eight interactions, and the
+1.3.0. The live scripted audit adds 80 trials across eight interactions, and the
 auth check is 200 with the 53254 cookie and 401 without it. See Table 4 and
 Extended Data in the paper.
 
@@ -162,7 +180,7 @@ full rebuild and measurement instructions.
 |---|---|
 | `chat-mode/` | Cordis/React client bundle, Host route, locales, icon, bundle manifest |
 | `deepchat-app/` | Swift/WKWebView shell, assets, Info.plist, build script, icon generator |
-| `tools/` | 141-check pipeline suite, 59-check formatting suite and the offline loader |
+| `tools/` | 143-check pipeline suite, 59-check formatting suite and the offline loader |
 | `paper/` | 18-page PDF, HTML/template source, data, figures, build scripts |
 | `docs/` | GitHub Pages landing page, screenshots, paper copy |
 
@@ -201,7 +219,7 @@ figures and tables are CC BY 4.0.
   title   = {DeepChat: a local-first, model-synchronising macOS client for
              reasoning-effort-controlled conversational AI},
   year    = {2026},
-  version = {1.2.0},
+  version = {1.3.0},
   url     = {https://github.com/zengpu987-ctrl/deepchat},
   note    = {Preprint: paper/DeepChat-Nature-Bilingual-18p.pdf}
 }
@@ -215,12 +233,17 @@ macOS 原生外壳。它把模型目录当成 Host 的实时视图：新增、�
 把 19387 写死。思考强度是可拖动的紫色强度条，已选段流光、未选段白色；模型行、闪电、
 记忆体、账号、工作区等控件全部可点。
 
-**1.2.0 的主要更新**：自动发现新端口（19387 → 53254），跟随 Host 把模型从
+**1.3.0 的主要更新**：新增 **文生图模态**（自动 / 写实 / 插画 / 海报 / 快速 / 高清六种模式，
+1:1 / 3:2 / 2:3 画幅，1/2/4 张），可在 Harness 生图与免费在线通道之间选择；桌面菜单
+「生成图片…」（⌘⇧I）直接打开。宿主半新增两条已鉴权图片路由，重启 Harness 后加载；
+重启前免费通道即时可用。
+
+**1.2.0 的更新**：自动发现新端口（19387 → 53254），跟随 Host 把模型从
 `DeepSeek-V41-Flash` 更新到 `DeepSeek-V4.1-Flash`（并提供 `DeepSeek-V4-Pro`），
 修复全部点击目标，发布 18 页中英双语、Nature 格式论文（7 图、11 表、58 篇参考文献）。
 
 安装：用 `plugin_manager` 安装 `chat-mode` bundle；从 Release 下载
-`DeepChat-1.2.0-macOS.zip` 解压到 `/Applications`。详见上文 Quick start。
+`DeepChat-1.3.0-macOS.zip` 解压到 `/Applications`。详见上文 Quick start。
 
 ## Licence
 

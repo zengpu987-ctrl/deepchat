@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: Zeng
     given-names: Pu
-version: 1.2.0
-date-released: 2026-10-19
+version: 1.3.0
+date-released: 2026-10-20
 url: "https://github.com/zengpu987-ctrl/deepchat"
 license: MIT
 keywords:
@@ -15,6 +15,7 @@ keywords:
   - local-first
   - reasoning effort
   - model routing
+  - text-to-image
   - macOS
   - WKWebView
 preferred-citation:

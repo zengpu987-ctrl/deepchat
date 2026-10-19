@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.3.0 — 2026-10-20
+
+- Added the **text-to-image modal** to DeepChat and the macOS app: six modes
+  (Auto / Photo / Illustration / Poster / Fast / HD), 1:1 / 3:2 / 2:3 aspect
+  ratios, and 1/2/4 images.
+- Added two engine choices: the Harness `image_generate` tool (after configuring
+  a provider and restarting Harness) and a keyless free online channel that
+  works immediately.
+- Added the native macOS menu **Generate image…** (⌘⇧I); `--image` opens the
+  modal in snapshot/debug runs.
+- Added authenticated Host routes `/api/chat-mode/image` and
+  `/api/chat-mode/image/status`; results from the Harness channel are saved
+  under `generate/image`.
+- Verification is now 143 pipeline checks + 59 formatting checks.
+
 ## 1.2.0 — 2026-10-19
 
 - Added signed-cookie **authority discovery**: decode `authority` from each

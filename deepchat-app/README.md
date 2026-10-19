@@ -16,6 +16,8 @@ DeepChat 目前是 DSH 的客户端插件，页面由本机 DeepSeek Harness 在
 4. 把 Harness 的全局侧栏折叠为 0，让 DeepChat 占满窗口；
 5. DeepSeek Harness 没有运行时，自动启动它，连接成功后把它自己的窗口隐藏；
 6. 文件上传（PDF / 图片 / 笔记本）、外链、⌘R 重载、全屏、编辑快捷键都可以用。
+   菜单「生成图片…」（⌘⇧I）打开 DeepChat 的文生图模态；免费在线通道立即可用，
+   Harness 生图通道在配置 provider 并重启 Harness 后可用。
 7. **与 Harness 同步**：每 20 秒静默检查一次 Harness 页面 revision 和登录 Cookie；空闲时自动重载，
    插件/页面/Harness 升级不用重装 App，也不用手动刷新；回答流式输出或输入框有草稿时会推迟重载。
 8. **模型同步**：Harness 新增、删除或修改模型后，DeepChat 顶栏的同步按钮或窗口重新获得焦点
@@ -24,7 +26,7 @@ DeepChat 目前是 DSH 的客户端插件，页面由本机 DeepSeek Harness 在
 聊天记录存在 **DeepChat.app 自己的 WebKit localStorage** 里。换一个应用/端口后，
 DeepChat 的 Superman 记忆体会把会话恢复回来（页面底部会提示「已从记忆体恢复 N 个会话」）。
 
-当前外壳版本 **1.2.0**：Harness 重启后换端口、换 Cookie、换模型（例如
+当前外壳版本 **1.3.0**：Harness 重启后换端口、换 Cookie、换模型（例如
 `DeepSeek-V41-Flash` → `DeepSeek-V4.1-Flash`）都不需要改配置；外壳从签名 Cookie 里
 发现新 authority 并自动重载。1.1.1 起启动点击只作用于 Harness 侧栏，不会误开模型菜单。
 

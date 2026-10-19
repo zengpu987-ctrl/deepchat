@@ -2692,6 +2692,58 @@ window.__ModuleLoader__.load({
 			pdfOcr: '（这份 PDF 没有文本层，以下内容由本机 OCR 识别，可能有错字）',
 			imageUnavailable: '[图片 "{name}" 是更早一轮上传的，原图已不在本地缓存中，如需再次查看请重新上传]',
 			textTruncated: '[附件 "{name}" 的历史内容在本地只保留了一部分]',
+			imageTitle: '文生图',
+			imageSubtitle: '选择一种生图模式，描述画面，DeepChat 生成图片。',
+			imagePromptLabel: '画面描述',
+			imagePlaceholder: '例如：雨夜霓虹街头的赛博朋克猫，电影感光线，16:9',
+			imageExamples: '试试',
+			imageExample1: '雨夜霓虹街头的赛博朋克猫',
+			imageExample2: '一张极简产品海报，留白',
+			imageExample3: '水彩风格的雪山与湖',
+			imageMode: '生图模式',
+			imageModeAuto: '自动',
+			imageModePhoto: '写实',
+			imageModeIllustration: '插画',
+			imageModePoster: '海报',
+			imageModeFast: '快速',
+			imageModeHd: '高清',
+			imageModeDescAuto: '直接按提示词生成',
+			imageModeDescPhoto: '自然光与真实质感',
+			imageModeDescIllustration: '干净线条与和谐配色',
+			imageModeDescPoster: '强构图与文字留白',
+			imageModeDescFast: '更快的草稿',
+			imageModeDescHd: '更细的纹理与清晰度',
+			imageRatio: '画幅',
+			imageSquare: '1:1',
+			imageLandscape: '3:2',
+			imagePortrait: '2:3',
+			imageCount: '数量',
+			imageEngine: '通道',
+			imageEngineAuto: '自动',
+			imageEngineHarness: 'Harness',
+			imageEngineFree: '免费在线',
+			imageEngineNote: '自动优先使用 Harness 生图；未配置时使用免费在线通道。',
+			imageGenerate: '生成图片',
+			imageGenerating: '正在生成',
+			imageCancel: '取消',
+			imageClose: '关闭',
+			imageDownload: '下载',
+			imageResults: '生成结果',
+			imageEmpty: '还没有生成图片',
+			imageEmptyHint: '写一段画面描述，选一个模式，然后生成。',
+			imageFreeNote: '免费在线通道由 pollinations.ai 提供；提示词会发送到该服务，图片可在此下载。',
+			imageHarnessNote: 'Harness 通道使用「设置 → 生图配置」中的模型；需要先配置 provider。',
+			imageNotConfigured: 'Harness 还没有配置生图模型。可以先用免费在线通道，或到「设置 → 生图配置」添加模型。',
+			imageRouteMissing: 'Harness 生图路由尚未加载（重启 Harness 后可用）。现在可以直接使用免费在线通道。',
+			imageUseFree: '用免费通道生成',
+			imageFailed: '图片生成失败',
+			imagePromptRequired: '先写一段画面描述。',
+			imagePromptTooLong: '画面描述太长了，请精简到 2000 字符以内。',
+			imageProgress: '正在生成第 {n}/{total} 张…',
+			imageReady: '已生成',
+			imageClear: '清空结果',
+			imageSavedPath: '已保存到 {path}',
+			imageDownloadName: 'deepchat-image',
 			chars: '字',
 		};
 		/** English dictionary, checked complete against the zh key set. */
@@ -2794,6 +2846,58 @@ window.__ModuleLoader__.load({
 			pdfOcr: '(This PDF has no text layer; the text below was recognised on this machine by OCR and may contain errors.)',
 			imageUnavailable: '[image "{name}" was uploaded in an earlier turn and is no longer cached locally; upload it again to look at it once more]',
 			textTruncated: '[only part of the earlier content of "{name}" is kept locally]',
+			imageTitle: 'Text to image',
+			imageSubtitle: 'Pick a generation mode, describe the scene, and DeepChat creates images.',
+			imagePromptLabel: 'Prompt',
+			imagePlaceholder: 'e.g. a cyberpunk cat in a rainy neon street, cinematic light, 16:9',
+			imageExamples: 'Try',
+			imageExample1: 'Cyberpunk cat in a rainy neon street',
+			imageExample2: 'A minimal product poster with negative space',
+			imageExample3: 'Watercolour snow mountains and a lake',
+			imageMode: 'Mode',
+			imageModeAuto: 'Auto',
+			imageModePhoto: 'Photo',
+			imageModeIllustration: 'Illustration',
+			imageModePoster: 'Poster',
+			imageModeFast: 'Fast',
+			imageModeHd: 'HD',
+			imageModeDescAuto: 'Generate directly from the prompt',
+			imageModeDescPhoto: 'Natural light and real texture',
+			imageModeDescIllustration: 'Clean shapes and a harmonious palette',
+			imageModeDescPoster: 'Bold layout and typographic space',
+			imageModeDescFast: 'A quicker draft',
+			imageModeDescHd: 'Finer texture and clarity',
+			imageRatio: 'Aspect',
+			imageSquare: '1:1',
+			imageLandscape: '3:2',
+			imagePortrait: '2:3',
+			imageCount: 'Count',
+			imageEngine: 'Engine',
+			imageEngineAuto: 'Auto',
+			imageEngineHarness: 'Harness',
+			imageEngineFree: 'Free online',
+			imageEngineNote: 'Auto prefers the configured Harness image model and falls back to the free online channel when none is configured.',
+			imageGenerate: 'Generate image',
+			imageGenerating: 'Generating',
+			imageCancel: 'Cancel',
+			imageClose: 'Close',
+			imageDownload: 'Download',
+			imageResults: 'Results',
+			imageEmpty: 'No images yet',
+			imageEmptyHint: 'Write a prompt, pick a mode, then generate.',
+			imageFreeNote: 'The free online channel is provided by pollinations.ai; the prompt is sent to that service and images can be downloaded here.',
+			imageHarnessNote: 'The Harness channel uses the model in Settings → Image generation; configure a provider first.',
+			imageNotConfigured: 'Harness has no image model configured. Use the free online channel now, or add a model in Settings → Image generation.',
+			imageRouteMissing: 'The Harness image route is not loaded yet (it becomes available after a Harness restart). The free online channel works now.',
+			imageUseFree: 'Generate with free channel',
+			imageFailed: 'Image generation failed',
+			imagePromptRequired: 'Write a prompt first.',
+			imagePromptTooLong: 'The prompt is too long; keep it under 2000 characters.',
+			imageProgress: 'Generating {n}/{total}…',
+			imageReady: 'Generated',
+			imageClear: 'Clear results',
+			imageSavedPath: 'Saved to {path}',
+			imageDownloadName: 'deepchat-image',
 			chars: 'chars',
 		};
 		//#endregion
@@ -4071,6 +4175,18 @@ window.__ModuleLoader__.load({
 			);
 		}
 
+		/** Picture glyph for the text-to-image entry. */
+		function ImageIcon({ size = 18 }) {
+			return React.createElement(
+				'svg',
+				{ className: 'cm_svg', width: size, height: size, viewBox: '0 0 24 24', fill: 'none', 'aria-hidden': 'true' },
+				React.createElement('rect', { x: 3, y: 4.2, width: 18, height: 15.6, rx: 3, stroke: 'currentColor', strokeWidth: 1.55 }),
+				React.createElement('circle', { cx: 8.6, cy: 9.4, r: 1.45, stroke: 'currentColor', strokeWidth: 1.45 }),
+				React.createElement('path', { d: 'm4.2 17.8 5.1-5 3.1 3 2.6-2.5 4.8 4.5', stroke: 'currentColor', strokeWidth: 1.55, strokeLinecap: 'round', strokeLinejoin: 'round' }),
+				React.createElement('path', { d: 'M17.6 3.1 18.2 4.7 19.8 5.3 18.2 5.9 17.6 7.5 17 5.9 15.4 5.3 17 4.7Z', fill: 'currentColor', opacity: .85 }),
+			);
+		}
+
 		/** Three dots for a conversation row's menu. */
 		function MoreIcon({ size = 16 }) {
 			return React.createElement(
@@ -4712,6 +4828,445 @@ window.__ModuleLoader__.load({
 		 * @param props - slot props.
 		 * @returns the panel section.
 		 */
+		/* ================= Text-to-image modal ================= */
+		/** The six generation modes shown in the modal; the Host applies the same prefixes. */
+		const IMAGE_MODES = [
+			{ id: 'auto', label: 'imageModeAuto', desc: 'imageModeDescAuto' },
+			{ id: 'photo', label: 'imageModePhoto', desc: 'imageModeDescPhoto' },
+			{ id: 'illustration', label: 'imageModeIllustration', desc: 'imageModeDescIllustration' },
+			{ id: 'poster', label: 'imageModePoster', desc: 'imageModeDescPoster' },
+			{ id: 'fast', label: 'imageModeFast', desc: 'imageModeDescFast' },
+			{ id: 'hd', label: 'imageModeHd', desc: 'imageModeDescHd' },
+		];
+		const IMAGE_SIZES = [
+			{ id: '1024x1024', label: 'imageSquare' },
+			{ id: '1536x1024', label: 'imageLandscape' },
+			{ id: '1024x1536', label: 'imagePortrait' },
+		];
+		const IMAGE_ENGINES = [
+			{ id: 'auto', label: 'imageEngineAuto' },
+			{ id: 'harness', label: 'imageEngineHarness' },
+			{ id: 'free', label: 'imageEngineFree' },
+		];
+		/** The free provider gets the same visual direction as the Host tool. */
+		const FREE_IMAGE_PREFIXES = {
+			auto: '',
+			photo: 'Photorealistic photograph, natural light, 50mm lens, fine detail, realistic textures.',
+			illustration: 'Editorial illustration, clean shapes, harmonious palette, subtle grain, high detail.',
+			poster: 'Graphic poster design, bold composition, strong typographic space, high contrast, print-ready.',
+			fast: '',
+			hd: 'Highly detailed, crisp, professional, high resolution.',
+		};
+		/** Give a fetch call the request's abort signal plus a hard timeout. */
+		function imageSignal(signal, timeoutMs) {
+			try {
+				if (typeof AbortSignal.any === 'function') return AbortSignal.any([signal, AbortSignal.timeout(timeoutMs)]);
+			} catch {
+				/* fall through to the caller's signal */
+			}
+			return signal;
+		}
+		/** Ask the Host's authenticated image route. A 404/405 means the route needs a Harness restart. */
+		async function requestHarnessImage(payload, signal) {
+			let response;
+			try {
+				response = await fetch('/api/chat-mode/image', {
+					method: 'POST',
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify(payload),
+					signal,
+				});
+			} catch (error) {
+				const wrapped = new Error(error instanceof Error ? error.message : String(error));
+				wrapped.code = 'image-failed';
+				throw wrapped;
+			}
+			if (response.status === 404 || response.status === 405) {
+				const missing = new Error('image route is not loaded');
+				missing.code = 'route-missing';
+				throw missing;
+			}
+			let data = null;
+			try {
+				data = await response.json();
+			} catch {
+				data = null;
+			}
+			if (!response.ok || data?.error !== undefined) {
+				const failed = new Error(data?.error?.message ?? `image route answered HTTP ${response.status}`);
+				failed.code = data?.error?.code ?? 'image-failed';
+				throw failed;
+			}
+			return data;
+		}
+		/** Generate directly against the no-key free provider (CORS-enabled). */
+		async function requestFreeImage(payload, signal, onProgress) {
+			const prefix = FREE_IMAGE_PREFIXES[payload.mode] ?? '';
+			const text = prefix === '' ? payload.prompt : `${prefix} ${payload.prompt}`;
+			const [width, height] = payload.size.split('x').map((value) => Number(value));
+			const model = payload.mode === 'fast' ? 'turbo' : 'flux';
+			const images = [];
+			for (let index = 0; index < payload.count; index += 1) {
+				if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+				const seed = Math.floor(Math.random() * 1_000_000_000);
+				const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(text)}?width=${width}&height=${height}&nologo=true&seed=${seed}&model=${model}`;
+				const response = await fetch(url, { headers: { accept: 'image/*' }, signal: imageSignal(signal, 180000) });
+				if (!response.ok) throw new Error(`free image service answered HTTP ${response.status}`);
+				const blob = await response.blob();
+				if (blob.size === 0) throw new Error('free image service returned an empty image');
+				images.push({ url: URL.createObjectURL(blob), mediaType: blob.type || 'image/jpeg', bytes: blob.size });
+				if (typeof onProgress === 'function') onProgress(index + 1);
+			}
+			return { ok: true, engine: 'free', provider: 'pollinations.ai', images };
+		}
+		/** File extension for a download link. */
+		function imageExtension(mediaType) {
+			if (mediaType === 'image/png') return 'png';
+			if (mediaType === 'image/webp') return 'webp';
+			if (mediaType === 'image/gif') return 'gif';
+			return 'jpg';
+		}
+
+		/**
+		 * The text-to-image modal. It is a sibling of the chat layout, so opening it does
+		 * not disturb the composer, and its results survive closing it until reload.
+		 */
+		function ImageModal({ t, open, onClose, results, setResults }) {
+			const h = React.createElement;
+			const [prompt, setPrompt] = React.useState('');
+			const [mode, setMode] = React.useState('auto');
+			const [size, setSize] = React.useState('1024x1024');
+			const [count, setCount] = React.useState(1);
+			const [engine, setEngine] = React.useState('auto');
+			const [busy, setBusy] = React.useState(false);
+			const [progress, setProgress] = React.useState(0);
+			const [error, setError] = React.useState(null);
+			const [status, setStatus] = React.useState(null);
+			const promptRef = React.useRef(null);
+			const abortRef = React.useRef(null);
+
+			React.useEffect(() => {
+				if (!open) return undefined;
+				const timer = window.setTimeout(() => promptRef.current?.focus(), 40);
+				let alive = true;
+				fetch('/api/chat-mode/image/status', {
+					method: 'POST',
+					headers: { 'content-type': 'application/json' },
+					body: '{}',
+				})
+					.then(async (response) => (response.ok ? response.json() : null))
+					.then((data) => {
+						if (alive) setStatus(data ?? { hostRoute: false, harnessConfigured: false, defaultEngine: 'free' });
+					})
+					.catch(() => {
+						if (alive) setStatus({ hostRoute: false, harnessConfigured: false, defaultEngine: 'free' });
+					});
+				return () => {
+					alive = false;
+					window.clearTimeout(timer);
+				};
+			}, [open]);
+
+			React.useEffect(() => {
+				if (!open) return undefined;
+				const onKeyDown = (event) => {
+					if (event.key === 'Escape' && !busy) onClose();
+				};
+				document.addEventListener('keydown', onKeyDown);
+				return () => document.removeEventListener('keydown', onKeyDown);
+			}, [open, busy, onClose]);
+
+			React.useEffect(() => () => abortRef.current?.abort(), []);
+
+			if (!open) return null;
+
+			const modeLabel = (id) => t((IMAGE_MODES.find((item) => item.id === id) ?? IMAGE_MODES[0]).label);
+			const engineLabel = (id) => t((IMAGE_ENGINES.find((item) => item.id === id) ?? IMAGE_ENGINES[0]).label);
+			const close = () => {
+				abortRef.current?.abort();
+				onClose();
+			};
+			const run = async (engineOverride) => {
+				if (busy) return;
+				const clean = prompt.trim();
+				if (clean === '') {
+					setError({ code: 'prompt', message: t('imagePromptRequired') });
+					return;
+				}
+				const activeEngine = engineOverride ?? engine;
+				const payload = { prompt: clean, mode, size, count, engine: activeEngine };
+				setError(null);
+				setBusy(true);
+				setProgress(0);
+				const controller = new AbortController();
+				abortRef.current = controller;
+				try {
+					let data;
+					if (activeEngine === 'free') {
+						data = await requestFreeImage(payload, controller.signal, setProgress);
+					} else {
+						try {
+							data = await requestHarnessImage(payload, controller.signal);
+						} catch (firstError) {
+							const fallback = activeEngine === 'auto' && (firstError.code === 'route-missing' || firstError.code === 'image-not-configured');
+							if (!fallback) throw firstError;
+							data = await requestFreeImage(payload, controller.signal, setProgress);
+						}
+					}
+					const incoming = (Array.isArray(data?.images) ? data.images : []).map((image, index) => ({
+						...image,
+						id: `img-${Date.now()}-${index}-${Math.random().toString(36).slice(2, 7)}`,
+						prompt: clean,
+						mode,
+						size,
+						engine: data.engine ?? activeEngine,
+						provider: data.provider,
+						model: data.model,
+						createdAt: Date.now(),
+					}));
+					if (incoming.length === 0) throw new Error('the provider returned no images');
+					setResults((previous) => [...incoming, ...previous].slice(0, 8));
+				} catch (failure) {
+					if (failure?.name === 'AbortError') return;
+					setError({
+						code: failure?.code ?? 'image-failed',
+						message: failure instanceof Error ? failure.message : String(failure),
+					});
+				} finally {
+					setBusy(false);
+					abortRef.current = null;
+				}
+			};
+
+			const modeCards = IMAGE_MODES.map((item) => h(
+				'button',
+				{
+					key: item.id,
+					type: 'button',
+					className: mode === item.id ? 'cm_imageMode cm_imageModeActive' : 'cm_imageMode',
+					'aria-pressed': mode === item.id ? 'true' : 'false',
+					onClick: () => setMode(item.id),
+				},
+				h('span', { className: 'cm_imageModeTitle' }, t(item.label)),
+				h('span', { className: 'cm_imageModeDesc' }, t(item.desc)),
+			));
+
+			const engineChips = IMAGE_ENGINES.map((item) => h(
+				'button',
+				{
+					key: item.id,
+					type: 'button',
+					className: engine === item.id ? 'cm_imageChip cm_imageChipActive' : 'cm_imageChip',
+					'aria-pressed': engine === item.id ? 'true' : 'false',
+					onClick: () => setEngine(item.id),
+				},
+				t(item.label),
+			));
+
+			const sizeChips = IMAGE_SIZES.map((item) => h(
+				'button',
+				{
+					key: item.id,
+					type: 'button',
+					className: size === item.id ? 'cm_imageChip cm_imageChipActive' : 'cm_imageChip',
+					'aria-pressed': size === item.id ? 'true' : 'false',
+					onClick: () => setSize(item.id),
+				},
+				t(item.label),
+			));
+
+			const countChips = [1, 2, 4].map((value) => h(
+				'button',
+				{
+					key: value,
+					type: 'button',
+					className: count === value ? 'cm_imageChip cm_imageChipActive' : 'cm_imageChip',
+					'aria-pressed': count === value ? 'true' : 'false',
+					onClick: () => setCount(value),
+				},
+				String(value),
+			));
+
+			const engineNote = engine === 'free'
+				? t('imageFreeNote')
+				: engine === 'harness'
+					? t('imageHarnessNote')
+					: status === null
+						? t('imageEngineNote')
+						: status.hostRoute === false
+							? t('imageRouteMissing')
+							: status.harnessConfigured
+								? t('imageHarnessNote')
+								: t('imageNotConfigured');
+
+			const resultCards = results.map((image, index) => {
+				const source = image.dataUrl ?? image.url;
+				const extension = imageExtension(image.mediaType);
+				return h(
+					'figure',
+					{ key: image.id ?? `result-${index}`, className: 'cm_imageResult' },
+					h('img', { src: source, alt: image.prompt ?? '', loading: 'lazy' }),
+					h(
+						'figcaption',
+						{ className: 'cm_imageResultMeta' },
+						h('span', { className: 'cm_imageResultLine' }, `${engineLabel(image.engine)} · ${modeLabel(image.mode ?? mode)} · ${image.size ?? size}`),
+						image.prompt === undefined ? null : h('span', { className: 'cm_imageResultPrompt' }, image.prompt),
+						image.path === undefined ? null : h('span', { className: 'cm_imageResultPath' }, t('imageSavedPath').replace('{path}', image.path)),
+						h(
+							'a',
+							{
+								className: 'cm_imageDownload',
+								href: source,
+								download: `${t('imageDownloadName')}-${index + 1}.${extension}`,
+							},
+							t('imageDownload'),
+						),
+					),
+				);
+			});
+
+			const errorCard = error === null ? null : h(
+				'div',
+				{ className: 'cm_imageError', role: 'alert' },
+				h('strong', null, t('imageFailed')),
+				h('span', null, error.message),
+				(error.code === 'image-not-configured' || error.code === 'route-missing') ? h(
+					'div',
+					{ className: 'cm_imageErrorActions' },
+					h('button', { type: 'button', className: 'cm_imageSecondary', onClick: () => run('free') }, t('imageUseFree')),
+					h('button', { type: 'button', className: 'cm_imageLink', onClick: () => setError(null) }, t('imageClose')),
+				) : null,
+			);
+
+			return h(
+				'div',
+				{
+					className: 'cm_imageBackdrop',
+					onMouseDown: (event) => {
+						if (event.target === event.currentTarget && !busy) close();
+					},
+				},
+				h(
+					'div',
+					{
+						className: 'cm_imageDialog',
+						role: 'dialog',
+						'aria-modal': 'true',
+						'aria-labelledby': 'cm_imageTitle',
+					},
+					h(
+						'header',
+						{ className: 'cm_imageHead' },
+						h(
+							'div',
+							null,
+							h('div', { className: 'cm_imageKicker' }, 'DeepChat'),
+							h('h2', { id: 'cm_imageTitle', className: 'cm_imageTitle' }, t('imageTitle')),
+							h('p', { className: 'cm_imageSubtitle' }, t('imageSubtitle')),
+						),
+						h('button', { type: 'button', className: 'cm_imageClose', title: t('imageClose'), 'aria-label': t('imageClose'), onClick: close }, h(CloseIcon, { size: 18 })),
+					),
+					h(
+						'div',
+						{ className: 'cm_imageBody' },
+						h(
+							'section',
+							{ className: 'cm_imageCompose' },
+							h('label', { className: 'cm_imageLabel', htmlFor: 'cm_imagePrompt' }, t('imagePromptLabel')),
+							h('textarea', {
+								id: 'cm_imagePrompt',
+								ref: promptRef,
+								className: 'cm_imagePrompt',
+								rows: 4,
+								maxLength: 2000,
+								value: prompt,
+								placeholder: t('imagePlaceholder'),
+								onChange: (event) => setPrompt(event.target.value),
+								onKeyDown: (event) => {
+									if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
+										event.preventDefault();
+										run();
+									}
+								},
+							}),
+							h(
+								'div',
+								{ className: 'cm_imageExamples' },
+								h('span', { className: 'cm_imageExamplesLabel' }, t('imageExamples')),
+								[t('imageExample1'), t('imageExample2'), t('imageExample3')].map((example) => h(
+									'button',
+									{ key: example, type: 'button', className: 'cm_imageExample', onClick: () => setPrompt(example) },
+									example,
+								)),
+							),
+							h(
+								'div',
+								{ className: 'cm_imageSection' },
+								h('div', { className: 'cm_imageSectionHead' }, t('imageMode')),
+								h('div', { className: 'cm_imageModes' }, modeCards),
+							),
+							h(
+								'div',
+								{ className: 'cm_imageControls' },
+								h('div', { className: 'cm_imageControl' },
+									h('div', { className: 'cm_imageSectionHead' }, t('imageRatio')),
+									h('div', { className: 'cm_imageChips' }, sizeChips),
+								),
+								h('div', { className: 'cm_imageControl' },
+									h('div', { className: 'cm_imageSectionHead' }, t('imageCount')),
+									h('div', { className: 'cm_imageChips' }, countChips),
+								),
+								h('div', { className: 'cm_imageControl' },
+									h('div', { className: 'cm_imageSectionHead' }, t('imageEngine')),
+									h('div', { className: 'cm_imageChips' }, engineChips),
+								),
+							),
+							h('p', { className: 'cm_imageNote' }, engineNote),
+							errorCard,
+							h(
+								'div',
+								{ className: 'cm_imageActions' },
+								h(
+									'button',
+									{
+										type: 'button',
+										className: 'cm_imageGenerate',
+										disabled: busy || prompt.trim() === '',
+										onClick: () => run(),
+									},
+									h(SparkleIcon, { size: 16 }),
+									h('span', null, busy ? `${t('imageGenerating')} ${progress}/${count}` : t('imageGenerate')),
+								),
+								busy
+									? h('button', { type: 'button', className: 'cm_imageSecondary', onClick: () => abortRef.current?.abort() }, t('imageCancel'))
+									: null,
+							),
+						),
+						h(
+							'section',
+							{ className: 'cm_imageResultsPane' },
+							h(
+								'div',
+								{ className: 'cm_imageResultsHead' },
+								h('span', null, t('imageResults')),
+								results.length === 0 ? null : h('button', { type: 'button', className: 'cm_imageLink', onClick: () => setResults([]) }, t('imageClear')),
+							),
+							results.length === 0
+								? h(
+										'div',
+										{ className: 'cm_imageEmpty' },
+										h(ImageIcon, { size: 34 }),
+										h('strong', null, t('imageEmpty')),
+										h('span', null, t('imageEmptyHint')),
+									)
+								: h('div', { className: 'cm_imageGrid' }, resultCards),
+						),
+					),
+					h('footer', { className: 'cm_imageFoot' }, t('imageFreeNote')),
+				),
+			);
+		}
+
 		function useChatPanelBody(props) {
 			const {
 				t, useChat, loadCatalog, send, stop, newConversation, openConversation, deleteConversation,
@@ -4727,6 +5282,8 @@ window.__ModuleLoader__.load({
 			const [syncingModels, setSyncingModels] = React.useState(false);
 			const [modelMenuOpen, setModelMenuOpen] = React.useState(false);
 			const [workspaceName, setWorkspaceName] = React.useState(t('defaultWorkspace'));
+			const [imageOpen, setImageOpen] = React.useState(false);
+			const [imageResults, setImageResults] = React.useState([]);
 			React.useEffect(() => {
 				loadCatalog();
 			}, [loadCatalog]);
@@ -4857,6 +5414,17 @@ window.__ModuleLoader__.load({
 					React.createElement(
 						'div',
 						{ className: 'cm_railTools' },
+						React.createElement(
+							'button',
+							{
+								type: 'button',
+								className: 'cm_iconBtn cm_imageBtn',
+								title: t('imageTitle'),
+								'aria-label': t('imageTitle'),
+								onClick: () => setImageOpen(true),
+							},
+							React.createElement(ImageIcon, { size: 17 }),
+						),
 						React.createElement(
 							'button',
 							{
@@ -5041,6 +5609,17 @@ window.__ModuleLoader__.load({
 							'button',
 							{
 								type: 'button',
+								className: 'cm_roundBtn cm_imageBtnComposer',
+								title: t('imageTitle'),
+								'aria-label': t('imageTitle'),
+								onClick: () => setImageOpen(true),
+							},
+							React.createElement(ImageIcon, { size: 18 }),
+						),
+						React.createElement(
+							'button',
+							{
+								type: 'button',
 								className: state.memoryOn ? 'cm_pillAction cm_pillActionOn' : 'cm_pillAction',
 								title: state.memoryOn ? t('memoryOn') : t('memoryOff'),
 								'aria-label': t('memory'),
@@ -5139,6 +5718,15 @@ window.__ModuleLoader__.load({
 							{ className: 'cm_drop' },
 							React.createElement('div', { className: 'cm_dropCard' }, React.createElement('strong', null, t('dropTitle')), React.createElement('span', null, t('dropHint'))),
 						)
+					: null,
+				imageOpen
+					? React.createElement(ImageModal, {
+							t,
+							open: imageOpen,
+							onClose: () => setImageOpen(false),
+							results: imageResults,
+							setResults: setImageResults,
+						})
 					: null,
 			);
 		}
@@ -5455,6 +6043,71 @@ window.__ModuleLoader__.load({
 			'.cm_accountMeta{color:var(--cm-text-faint);padding:0 4px 4px;font-size:11.5px;line-height:16px}',
 			'.cm_accountAction{color:var(--cm-text);cursor:pointer;background:var(--cm-hover);border:0;border-radius:8px;width:100%;height:32px;margin-top:6px;font:inherit;font-size:12.5px}',
 			'.cm_accountAction:hover{background:var(--cm-active)}',
+			/* ── text-to-image modal ── */
+			'.cm_imageBtn:hover,.cm_imageBtnComposer:hover{color:var(--cm-purple)!important;background:#f5f3ff}',
+			'[data-ds-dark-theme] .cm_imageBtn:hover,[data-ds-dark-theme] .cm_imageBtnComposer:hover{background:rgba(124,58,237,.18)}',
+			'.cm_imageBackdrop{position:fixed;inset:0;z-index:1000;background:rgba(16,17,20,.48);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:22px;display:flex}',
+			'.cm_imageDialog{width:min(1080px,calc(100vw - 40px));height:min(780px,calc(100vh - 44px));max-height:92vh;background:var(--cm-bg);border:1px solid var(--cm-line);border-radius:22px;box-shadow:0 40px 120px rgba(0,0,0,.38);display:flex;flex-direction:column;overflow:hidden}',
+			'.cm_imageHead{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 24px 16px;border-bottom:1px solid var(--cm-line)}',
+			'.cm_imageKicker{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cm-purple);font-weight:700;line-height:14px}',
+			'.cm_imageTitle{margin:2px 0 2px;font-size:24px;line-height:31px;letter-spacing:-.02em}',
+			'.cm_imageSubtitle{margin:0;color:var(--cm-text-faint);font-size:12.5px;line-height:18px}',
+			'.cm_imageClose{flex:none;width:34px;height:34px;border-radius:999px;border:1px solid var(--cm-line);background:var(--cm-bg);color:var(--cm-text-soft);display:flex;align-items:center;justify-content:center;cursor:pointer}',
+			'.cm_imageClose:hover{background:var(--cm-hover);color:var(--cm-text)}',
+			'.cm_imageBody{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);overflow:hidden}',
+			'.cm_imageCompose{padding:18px 22px 16px;overflow:auto}',
+			'.cm_imageResultsPane{padding:18px 20px;overflow:auto;background:var(--cm-rail);border-left:1px solid var(--cm-line);min-height:0}',
+			'.cm_imageLabel{display:block;font-size:12px;font-weight:600;line-height:17px;margin-bottom:6px}',
+			'.cm_imagePrompt{width:100%;min-height:96px;max-height:190px;resize:vertical;background:var(--cm-bg);border:1px solid var(--cm-line);border-radius:13px;padding:11px 13px;font:inherit;font-size:13.5px;line-height:21px;color:var(--cm-text);outline:none}',
+			'.cm_imagePrompt:focus{border-color:var(--cm-purple);box-shadow:0 0 0 3px rgba(124,58,237,.13)}',
+			'.cm_imagePrompt::placeholder{color:var(--cm-text-faint)}',
+			'.cm_imageExamples{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:7px 0 14px}',
+			'.cm_imageExamplesLabel{color:var(--cm-text-faint);font-size:11px;margin-right:2px}',
+			'.cm_imageExample{background:var(--cm-bg);border:1px solid var(--cm-line);border-radius:999px;color:var(--cm-text-soft);cursor:pointer;padding:4px 9px;font:inherit;font-size:11px;line-height:16px}',
+			'.cm_imageExample:hover{border-color:#c4b5fd;color:var(--cm-purple)}',
+			'.cm_imageSection{margin-bottom:13px}',
+			'.cm_imageSectionHead{font-size:11px;font-weight:650;color:var(--cm-text-soft);letter-spacing:.02em;margin-bottom:6px}',
+			'.cm_imageModes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}',
+			'.cm_imageMode{display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--cm-bg);border:1px solid var(--cm-line);border-radius:11px;padding:8px 9px;cursor:pointer;text-align:left;font:inherit}',
+			'.cm_imageMode:hover{border-color:#c4b5fd}',
+			'.cm_imageModeActive{border-color:var(--cm-purple);background:#f5f3ff;box-shadow:inset 0 0 0 1px var(--cm-purple)}',
+			'[data-ds-dark-theme] .cm_imageModeActive{background:rgba(124,58,237,.18)}',
+			'.cm_imageModeTitle{font-size:12.5px;font-weight:650;line-height:17px;color:var(--cm-text)}',
+			'.cm_imageModeDesc{font-size:10.5px;line-height:14px;color:var(--cm-text-faint)}',
+			'.cm_imageControls{display:grid;grid-template-columns:1.05fr .6fr 1.1fr;gap:12px;margin-bottom:8px}',
+			'.cm_imageControl{min-width:0}',
+			'.cm_imageChips{display:flex;gap:4px;flex-wrap:wrap}',
+			'.cm_imageChip{border:1px solid var(--cm-line);background:var(--cm-bg);color:var(--cm-text-soft);border-radius:7px;padding:4px 8px;font:inherit;font-size:11.5px;line-height:17px;cursor:pointer;white-space:nowrap}',
+			'.cm_imageChip:hover{border-color:#c4b5fd;color:var(--cm-purple)}',
+			'.cm_imageChipActive{background:var(--cm-text);color:var(--cm-bg);border-color:var(--cm-text)}',
+			'.cm_imageNote{color:var(--cm-text-faint);font-size:10.5px;line-height:15px;margin:5px 0 10px}',
+			'.cm_imageActions{display:flex;align-items:center;gap:8px;margin-top:4px}',
+			'.cm_imageGenerate{display:flex;align-items:center;gap:7px;border:0;border-radius:10px;background:linear-gradient(100deg,#7c3aed,#8b5cf6 55%,#2563eb);color:#fff;padding:9px 14px;font:inherit;font-size:12.5px;font-weight:650;line-height:18px;cursor:pointer;box-shadow:0 6px 16px rgba(124,58,237,.28)}',
+			'.cm_imageGenerate:hover:not(:disabled){filter:brightness(1.05)}',
+			'.cm_imageGenerate:disabled{opacity:.45;cursor:default;box-shadow:none}',
+			'.cm_imageSecondary{border:1px solid var(--cm-line);background:var(--cm-bg);color:var(--cm-text-soft);border-radius:8px;padding:6px 10px;font:inherit;font-size:11.5px;cursor:pointer}',
+			'.cm_imageSecondary:hover{background:var(--cm-hover);color:var(--cm-text)}',
+			'.cm_imageLink{border:0;background:0 0;color:var(--cm-text-faint);font:inherit;font-size:11px;cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:2px}',
+			'.cm_imageLink:hover{color:var(--cm-text)}',
+			'.cm_imageError{border:1px solid #fecaca;background:#fef2f2;color:#991b1b;border-radius:11px;padding:9px 11px;display:flex;flex-direction:column;gap:3px;font-size:11.5px;line-height:16px;margin:2px 0 8px}',
+			'[data-ds-dark-theme] .cm_imageError{border-color:#7f1d1d;background:rgba(127,29,29,.22);color:#fecaca}',
+			'.cm_imageError strong{font-size:12px}',
+			'.cm_imageErrorActions{display:flex;align-items:center;gap:10px;margin-top:4px}',
+			'.cm_imageResultsHead{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;font-weight:650;color:var(--cm-text-soft);margin-bottom:8px}',
+			'.cm_imageGrid{display:grid;grid-template-columns:1fr;gap:10px}',
+			'.cm_imageResult{margin:0;border:1px solid var(--cm-line);border-radius:13px;overflow:hidden;background:var(--cm-bg)}',
+			'.cm_imageResult img{display:block;width:100%;height:auto;max-height:330px;object-fit:contain;background:#f3f3f5}',
+			'.cm_imageResultMeta{display:flex;flex-direction:column;gap:3px;padding:8px 9px 9px;font-size:10.5px;line-height:14px;color:var(--cm-text-faint)}',
+			'.cm_imageResultLine{color:var(--cm-text-soft);font-weight:600}',
+			'.cm_imageResultPrompt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}',
+			'.cm_imageResultPath{font-family:"SF Mono",Menlo,monospace;font-size:9.5px;color:var(--cm-purple);word-break:break-all}',
+			'.cm_imageDownload{align-self:flex-start;color:var(--cm-text);border:1px solid var(--cm-line);border-radius:6px;padding:3px 8px;text-decoration:none;font-size:10.5px;margin-top:2px}',
+			'.cm_imageDownload:hover{background:var(--cm-hover)}',
+			'.cm_imageEmpty{min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--cm-text-faint);text-align:center;padding:20px;border:1px dashed var(--cm-line);border-radius:13px}',
+			'.cm_imageEmpty strong{color:var(--cm-text-soft);font-size:12.5px}',
+			'.cm_imageEmpty span{font-size:11px;line-height:16px;max-width:220px}',
+			'.cm_imageFoot{border-top:1px solid var(--cm-line);padding:8px 22px;color:var(--cm-text-faint);font-size:10px;line-height:14px}',
+			'@media (max-width:920px){.cm_imageDialog{height:calc(100vh - 30px)}.cm_imageBody{display:flex;flex-direction:column;overflow:auto}.cm_imageCompose{overflow:visible}.cm_imageResultsPane{border-left:0;border-top:1px solid var(--cm-line);overflow:visible}.cm_imageControls{grid-template-columns:1fr 1fr}.cm_imageModes{grid-template-columns:repeat(2,minmax(0,1fr))}.cm_imageBackdrop{padding:10px}.cm_imageGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}',
 		].join('');
 		//#endregion
 

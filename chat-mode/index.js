@@ -1,3 +1,9 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
+import { homedir } from 'node:os';
+import { readFileSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+
 /**
  * Host half of the chat-mode bundle.
  *
@@ -19,6 +25,24 @@
 export const inject = ['llm'];
 /** The exact route the Chat panel calls, under the authenticated `/api` channel. */
 const STREAM_PATH = '/api/chat-mode/stream';
+/** Image generation routes under the same authenticated `/api` channel. */
+const IMAGE_PATH = '/api/chat-mode/image';
+const IMAGE_STATUS_PATH = '/api/chat-mode/image/status';
+/** The free, no-key fallback. It is opt-in/AUTO only when Harness has no image model. */
+const FREE_IMAGE_ENDPOINT = 'https://image.pollinations.ai/prompt/';
+/** Accepted image dimensions (the catalog's own size vocabulary). */
+const IMAGE_SIZES = new Set(['1024x1024', '1536x1024', '1024x1536']);
+/** Longest prompt accepted by the image route. */
+const MAX_IMAGE_PROMPT = 2000;
+/** Image generation modes: a prompt prefix plus the quality given to the Harness tool. */
+const IMAGE_MODES = {
+	auto: { prefix: '', quality: 'medium', label: 'Auto' },
+	photo: { prefix: 'Photorealistic photograph, natural light, 50mm lens, fine detail, realistic textures.', quality: 'high', label: 'Photo' },
+	illustration: { prefix: 'Editorial illustration, clean shapes, harmonious palette, subtle grain, high detail.', quality: 'medium', label: 'Illustration' },
+	poster: { prefix: 'Graphic poster design, bold composition, strong typographic space, high contrast, print-ready.', quality: 'high', label: 'Poster' },
+	fast: { prefix: '', quality: 'low', label: 'Fast' },
+	hd: { prefix: 'Highly detailed, crisp, professional, high resolution.', quality: 'high', label: 'HD' },
+};
 /** Image media types the attachment service accepts. */
 const IMAGE_MEDIA_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp', 'image/gif']);
 /** Longest accepted image, so one message cannot pin an unbounded buffer. */
@@ -233,6 +257,209 @@ async function serve(ctx, systemPrompt, request) {
 	});
 }
 
+/** Word a JSON image failure the panel can switch on. */
+function imageFailure(status, code, message) {
+	return Response.json({ error: { code, message } }, { status });
+}
+
+/** Normalize a caller-supplied image mode. */
+function imageMode(value) {
+	return typeof value === 'string' && IMAGE_MODES[value] !== undefined ? value : 'auto';
+}
+
+/** Normalize a caller-supplied image size; poster defaults to portrait. */
+function imageSize(value, mode) {
+	if (typeof value === 'string' && IMAGE_SIZES.has(value)) return value;
+	return mode === 'poster' ? '1024x1536' : '1024x1024';
+}
+
+/** Normalize a caller-supplied image count. */
+function imageCount(value) {
+	const count = Number(value);
+	return Number.isInteger(count) && count >= 1 && count <= 4 ? count : 1;
+}
+
+/** Put the mode's visual direction in front of the user's own prompt. */
+function imagePrompt(mode, prompt) {
+	const prefix = IMAGE_MODES[mode]?.prefix ?? '';
+	return prefix === '' ? prompt : `${prefix} ${prompt}`;
+}
+
+/** The workspace root the image tool and free fallback write into. */
+function imageWorkspace(ctx) {
+	const workingDirectory = ctx.get('workingDirectory');
+	const configured = typeof workingDirectory?.defaultDirectory === 'string' ? workingDirectory.defaultDirectory.trim() : '';
+	return configured === '' ? process.cwd() : configured;
+}
+
+/** Sniff a generated file's media type from its first bytes. */
+function sniffImageMediaType(bytes) {
+	if (bytes.length > 8 && bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) return 'image/png';
+	if (bytes.length > 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return 'image/jpeg';
+	if (bytes.length > 12 && bytes.subarray(0, 4).toString() === 'RIFF' && bytes.subarray(8, 12).toString() === 'WEBP') return 'image/webp';
+	if (bytes.length > 6 && bytes.subarray(0, 3).toString() === 'GIF') return 'image/gif';
+	return 'image/png';
+}
+
+/** Read one generated file back as a browser-safe data URL. */
+async function imageFromFile(cwd, relativePath) {
+	const absolute = resolve(cwd, relativePath);
+	const bytes = await readFile(absolute);
+	const mediaType = sniffImageMediaType(bytes);
+	return {
+		path: relativePath,
+		mediaType,
+		bytes: bytes.byteLength,
+		dataUrl: `data:${mediaType};base64,${bytes.toString('base64')}`,
+	};
+}
+
+/** Read the CLI/plugin mirror to decide whether Harness image generation is configured. */
+function imageStatusOf(ctx) {
+	let harnessConfigured = false;
+	let harnessAvailable = false;
+	try {
+		const tools = ctx.get('tools');
+		harnessAvailable = tools?.get('image_generate') !== undefined;
+	} catch {
+		harnessAvailable = false;
+	}
+	try {
+		const path = join(homedir(), '.dsh', 'gen-image.config.json');
+		const config = JSON.parse(readFileSync(path, 'utf8'));
+		const providers = Array.isArray(config?.providers) ? config.providers : [];
+		const selected = typeof config?.selection?.modelId === 'string' ? config.selection.modelId.trim() : '';
+		harnessConfigured = harnessAvailable && providers.length > 0 && selected !== '';
+	} catch {
+		harnessConfigured = false;
+	}
+	return {
+		hostRoute: true,
+		harnessAvailable,
+		harnessConfigured,
+		defaultEngine: harnessConfigured ? 'harness' : 'free',
+		free: { available: true, provider: 'pollinations.ai', requiresNetwork: true },
+	};
+}
+
+/** Serve the image-generation capability/status card. */
+async function serveImageStatus(ctx, request) {
+	if (request.method !== 'POST') return imageFailure(405, 'method', 'POST is required');
+	return Response.json(imageStatusOf(ctx));
+}
+
+/** Generate through the already-registered `image_generate` tool, without the agent loop. */
+async function generateWithHarness(ctx, prompt, mode, size, signal, cwd) {
+	const definition = ctx.get('tools')?.get('image_generate');
+	if (definition === undefined) throw new Error('image_generate is not available; install dsh-media-gen first');
+	const args = { prompt: imagePrompt(mode, prompt), size, quality: IMAGE_MODES[mode]?.quality ?? 'medium' };
+	const toolSignal = typeof AbortSignal.any === 'function' ? AbortSignal.any([signal, AbortSignal.timeout(300_000)]) : signal;
+	const value = await definition.execute(args, {
+		callId: randomUUID(),
+		name: 'image_generate',
+		arguments: args,
+		agent: { id: 'chat-mode-image', session: { header: { cwd } } },
+		signal: toolSignal,
+		deferContext() {},
+		concludeTurn() {},
+	});
+	const paths = Array.isArray(value?.paths) ? value.paths.filter((item) => typeof item === 'string' && item !== '') : [];
+	if (paths.length === 0) throw new Error('image_generate returned no saved image path');
+	const images = [];
+	for (const path of paths) images.push(await imageFromFile(cwd, path));
+	return { images, provider: value?.provider, model: value?.model, paths };
+}
+
+/** Generate through the no-key Pollinations fallback and save bytes locally when possible. */
+async function generateWithFree(prompt, mode, size, count, signal, cwd) {
+	const [width, height] = size.split('x').map((value) => Number(value));
+	const model = mode === 'fast' ? 'turbo' : 'flux';
+	const images = [];
+	const paths = [];
+	for (let index = 0; index < count; index += 1) {
+		const seed = Math.floor(Math.random() * 1_000_000_000);
+		const url = `${FREE_IMAGE_ENDPOINT}${encodeURIComponent(imagePrompt(mode, prompt))}?width=${width}&height=${height}&nologo=true&seed=${seed}&model=${model}`;
+		const timeout = AbortSignal.timeout(180_000);
+		const combined = typeof AbortSignal.any === 'function' ? AbortSignal.any([signal, timeout]) : timeout;
+		const response = await fetch(url, { signal: combined, headers: { accept: 'image/*' } });
+		if (!response.ok) throw new Error(`free image service answered HTTP ${response.status}`);
+		const bytes = Buffer.from(await response.arrayBuffer());
+		if (bytes.byteLength === 0) throw new Error('free image service returned an empty image');
+		if (bytes.byteLength > 20 * 1024 * 1024) throw new Error('free image is larger than 20 MB');
+		const mediaType = sniffImageMediaType(bytes);
+		let savedPath;
+		try {
+			const directory = join(cwd, 'generate', 'image');
+			await mkdir(directory, { recursive: true });
+			const name = `image-free-${new Date().toISOString().replace(/[:.]/g, '-')}-${index}.${mediaType === 'image/jpeg' ? 'jpg' : mediaType === 'image/webp' ? 'webp' : 'png'}`;
+			await writeFile(join(directory, name), bytes);
+			savedPath = join('generate', 'image', name);
+			paths.push(savedPath);
+		} catch {
+			savedPath = undefined;
+		}
+		images.push({
+			...(savedPath === undefined ? {} : { path: savedPath }),
+			mediaType,
+			bytes: bytes.byteLength,
+			dataUrl: `data:${mediaType};base64,${bytes.toString('base64')}`,
+		});
+	}
+	return { images, provider: 'pollinations.ai', model, paths };
+}
+
+/** Serve one text-to-image request. */
+async function serveImage(ctx, request) {
+	if (request.method !== 'POST') return imageFailure(405, 'method', 'POST is required');
+	let body;
+	try {
+		body = await request.json();
+	} catch {
+		return imageFailure(400, 'body', 'body is not JSON');
+	}
+	const prompt = typeof body?.prompt === 'string' ? body.prompt.trim() : '';
+	if (prompt === '') return imageFailure(400, 'prompt', 'prompt is required');
+	if (prompt.length > MAX_IMAGE_PROMPT) return imageFailure(400, 'prompt-too-long', `prompt is longer than ${MAX_IMAGE_PROMPT} characters`);
+	const mode = imageMode(body?.mode);
+	const size = imageSize(body?.size, mode);
+	const count = imageCount(body?.count);
+	const requestedEngine = body?.engine === 'harness' || body?.engine === 'free' ? body.engine : 'auto';
+	const status = imageStatusOf(ctx);
+	const engine = requestedEngine === 'auto' ? status.defaultEngine : requestedEngine;
+	const cwd = imageWorkspace(ctx);
+	const started = Date.now();
+	try {
+		if (engine === 'harness') {
+			const images = [];
+			const paths = [];
+			let provider;
+			let model;
+			for (let index = 0; index < count; index += 1) {
+				const generated = await generateWithHarness(ctx, prompt, mode, size, request.signal, cwd);
+				provider = generated.provider ?? provider;
+				model = generated.model ?? model;
+				images.push(...generated.images);
+				paths.push(...generated.paths);
+			}
+			return Response.json({
+				ok: true, engine: 'harness', mode, size, count, prompt: imagePrompt(mode, prompt),
+				provider, model, paths, images, elapsedMs: Date.now() - started,
+			});
+		}
+		const generated = await generateWithFree(prompt, mode, size, count, request.signal, cwd);
+		return Response.json({
+			ok: true, engine: 'free', mode, size, count, prompt: imagePrompt(mode, prompt),
+			provider: generated.provider, model: generated.model, paths: generated.paths,
+			images: generated.images, elapsedMs: Date.now() - started,
+		});
+	} catch (error) {
+		const message = error instanceof Error ? error.message : String(error);
+		const code = /尚未选择生图模型|not configured|no provider|no model|not available/i.test(message)
+			? 'image-not-configured' : 'image-failed';
+		return imageFailure(code === 'image-not-configured' ? 409 : 502, code, message);
+	}
+}
+
 /**
  * Register the Chat panel's streaming route.
  * @param ctx - the Host plugin context.
@@ -250,6 +477,24 @@ export function apply(ctx, config) {
 				fetch: (request) => serve(connectionCtx, systemPrompt, request),
 			}),
 			'chat-mode: stream route',
+		);
+		connectionCtx.effect(
+			() => connectionCtx.connection.fetch.register({
+				path: IMAGE_STATUS_PATH,
+				methods: ['POST'],
+				requestBody: 'buffered',
+				fetch: (request) => serveImageStatus(connectionCtx, request),
+			}),
+			'chat-mode: image status route',
+		);
+		connectionCtx.effect(
+			() => connectionCtx.connection.fetch.register({
+				path: IMAGE_PATH,
+				methods: ['POST'],
+				requestBody: 'buffered',
+				fetch: (request) => serveImage(connectionCtx, request),
+			}),
+			'chat-mode: image route',
 		);
 	});
 }
